@@ -58,91 +58,91 @@ std::vector<WordDescription::Grammem> &WordDescription::getGrammems() {
 	return myGrammems;
 }
 
-void WordDescription::printPartOfSpeech(std::ostream &out) {
+void WordDescription::printPartOfSpeech(std::ostream &os) {
 	switch (myPartOfSpeech){
-		case 0: out << "Part Of Speech = существительное\n"                  ; break;
-		case 1: out << "Part Of Speech = прилагательное\n"                   ; break;
-		case 2: out << "Part Of Speech = глагол\n"                           ; break;
-		case 3: out << "Part Of Speech = местоимение\n"                      ; break;
-		case 4: out << "Part Of Speech = местоименное прилагательное\n"      ; break;
-		case 5: out << "Part Of Speech = местоимение-предикатив\n"           ; break; // НЕЧЕГО слезы лить.
-		case 6: out << "Part Of Speech = числительное\n"                     ; break;
-		case 7: out << "Part Of Speech = порядковое числительное\n"          ; break;
-		case 8: out << "Part Of Speech = наречие\n"                          ; break;
-		case 9: out << "Part Of Speech = категория состояния (предикатив)\n" ; break; // "мне каково?": стыдно, холодно, просто
-		case 10: out << "Part Of Speech = предлог\n"                         ; break;
-		case 11: out << "Part Of Speech = posl\n"                            ; break;
-		case 12: out << "Part Of Speech = союз\n"                            ; break;
-		case 13: out << "Part Of Speech = междометие\n"                      ; break;
-		case 14: out << "Part Of Speech = вводное слово\n"                   ; break;
-		case 15: out << "Part Of Speech = реплика\n"                         ; break;
-		case 16: out << "Part Of Speech = частица\n"                         ; break;
-		case 17: out << "Part Of Speech = краткое наречие\n"                 ; break;
-		case 18: out << "Part Of Speech = причастие\n"                       ; break;
-		case 19: out << "Part Of Speech = деепричастие\n"                    ; break;
-		case 20: out << "Part Of Speech = краткое причастие\n"               ; break;
-		case 21: out << "Part Of Speech = инфитив глагола\n"                 ; break;
-		default : out << "Part Of Speech = не известно\n"                    ; break;
+		case 0: os << "Part Of Speech = существительное\n"                  ; break;
+		case 1: os << "Part Of Speech = прилагательное\n"                   ; break;
+		case 2: os << "Part Of Speech = глагол\n"                           ; break;
+		case 3: os << "Part Of Speech = местоимение\n"                      ; break;
+		case 4: os << "Part Of Speech = местоименное прилагательное\n"      ; break;
+		case 5: os << "Part Of Speech = местоимение-предикатив\n"           ; break; // НЕЧЕГО слезы лить.
+		case 6: os << "Part Of Speech = числительное\n"                     ; break;
+		case 7: os << "Part Of Speech = порядковое числительное\n"          ; break;
+		case 8: os << "Part Of Speech = наречие\n"                          ; break;
+		case 9: os << "Part Of Speech = категория состояния (предикатив)\n" ; break; // "мне каково?": стыдно, холодно, просто
+		case 10: os << "Part Of Speech = предлог\n"                         ; break;
+		case 11: os << "Part Of Speech = posl\n"                            ; break;
+		case 12: os << "Part Of Speech = союз\n"                            ; break;
+		case 13: os << "Part Of Speech = междометие\n"                      ; break;
+		case 14: os << "Part Of Speech = вводное слово\n"                   ; break;
+		case 15: os << "Part Of Speech = реплика\n"                         ; break;
+		case 16: os << "Part Of Speech = частица\n"                         ; break;
+		case 17: os << "Part Of Speech = краткое наречие\n"                 ; break;
+		case 18: os << "Part Of Speech = причастие\n"                       ; break;
+		case 19: os << "Part Of Speech = деепричастие\n"                    ; break;
+		case 20: os << "Part Of Speech = краткое причастие\n"               ; break;
+		case 21: os << "Part Of Speech = инфитив глагола\n"                 ; break;
+		default : os << "Part Of Speech = не известно\n"                    ; break;
 
 	}
 }
 
-void WordDescription::printGrammems(std::ostream &out) {
-	out << "Grammems:\n";
+void WordDescription::printGrammems(std::ostream &os) {
+	os << "Grammems:\n";
 	for (std::vector<WordDescription::Grammem>::iterator jt = myGrammems.begin(); jt != myGrammems.end(); ++jt) {
 		switch ((*jt)) {
-			case 0 : out << "множественное число\n"      ; break;
-			case 1 : out << "единственное число\n"       ; break;
-			case 2 : out << "именительный падеж\n"       ; break;
-			case 3 : out << "родительный падеж\n"        ; break;
-			case 4 : out << "дательный падеж\n"          ; break;
-			case 5 : out << "винительный падеж\n"        ; break;
-			case 6 : out << "творительный падеж\n"       ; break;
-			case 7 : out << "предложный падеж\n"         ; break;
-			case 8 : out << "звательный падеж\n"         ; break;
-			case 9 : out << "мужской род\n"              ; break;
-			case 10: out << "женский род\n"              ; break;
-			case 11: out << "средний род\n"              ; break;
-			case 12: out << "смешанный род\n"            ; break;
-			case 13: out << "краткая форма\n"            ; break;
-			case 14: out << "настоящее время\n"          ; break;
-			case 15: out << "будущее время\n"            ; break;
-			case 16: out << "прошедшее время\n"          ; break;
-			case 17: out << "первое лицо\n"              ; break;
-			case 18: out << "второе лицо\n"              ; break;
-			case 19: out << "третье лицо\n"              ; break;
-			case 20: out << "повелительное наклонение\n" ; break;
-			case 21: out << "одушевлённое\n"             ; break;
-			case 22: out << "неодушевлённое\n"           ; break;
-			case 23: out << "сравнительная степень\n"    ; break;
-			case 24: out << "совершенный вид\n"          ; break;
-			case 25: out << "несовершенный вид\n"        ; break;
-			case 26: out << "непереходной глагол\n"      ; break;
-			case 27: out << "переходной глагол\n"        ; break;
-			case 28: out << "активный залог\n"           ; break;
-			case 29: out << "пассивный залог\n"          ; break;
-			case 30: out << "несклоняемый\n"             ; break;
-			case 31: out << "только инфинитив\n"         ; break;
-			case 32: out << "отчество\n"                 ; break;
-			case 33: out << "топоним\n"                  ; break;
-			case 34: out << "организация\n"              ; break;
-			case 35: out << "качественное\n"             ; break;
-			case 36: out << "не имеет числа\n"           ; break;
-			case 37: out << "вопросительное\n"           ; break;
-			case 38: out << "указательное\n"             ; break;
-			case 39: out << "имя\n"                      ; break;
-			case 40: out << "фамилия\n"                  ; break;
-			case 41: out << "безличное\n"                ; break;
-			case 42: out << "сленг\n"                    ; break;
-			case 43: out << "опечатка\n"                 ; break;
-			case 44: out << "разговорный\n"              ; break;
-			case 45: out << "притяжательный\n"           ; break;
-			case 46: out << "архаизм\n"                  ; break;
-			case 47: out << "переносное значение\n"      ; break;
-			case 48: out << "высокий стиль\n"            ; break;
-			case 49: out << "профессия\n"                ; break;
-			case 50: out << "превосходная степень\n"     ; break;
-			case 51: out << "положительная степень\n"    ; break;
+			case 0 : os << "множественное число\n"      ; break;
+			case 1 : os << "единственное число\n"       ; break;
+			case 2 : os << "именительный падеж\n"       ; break;
+			case 3 : os << "родительный падеж\n"        ; break;
+			case 4 : os << "дательный падеж\n"          ; break;
+			case 5 : os << "винительный падеж\n"        ; break;
+			case 6 : os << "творительный падеж\n"       ; break;
+			case 7 : os << "предложный падеж\n"         ; break;
+			case 8 : os << "звательный падеж\n"         ; break;
+			case 9 : os << "мужской род\n"              ; break;
+			case 10: os << "женский род\n"              ; break;
+			case 11: os << "средний род\n"              ; break;
+			case 12: os << "смешанный род\n"            ; break;
+			case 13: os << "краткая форма\n"            ; break;
+			case 14: os << "настоящее время\n"          ; break;
+			case 15: os << "будущее время\n"            ; break;
+			case 16: os << "прошедшее время\n"          ; break;
+			case 17: os << "первое лицо\n"              ; break;
+			case 18: os << "второе лицо\n"              ; break;
+			case 19: os << "третье лицо\n"              ; break;
+			case 20: os << "повелительное наклонение\n" ; break;
+			case 21: os << "одушевлённое\n"             ; break;
+			case 22: os << "неодушевлённое\n"           ; break;
+			case 23: os << "сравнительная степень\n"    ; break;
+			case 24: os << "совершенный вид\n"          ; break;
+			case 25: os << "несовершенный вид\n"        ; break;
+			case 26: os << "непереходной глагол\n"      ; break;
+			case 27: os << "переходной глагол\n"        ; break;
+			case 28: os << "активный залог\n"           ; break;
+			case 29: os << "пассивный залог\n"          ; break;
+			case 30: os << "несклоняемый\n"             ; break;
+			case 31: os << "только инфинитив\n"         ; break;
+			case 32: os << "отчество\n"                 ; break;
+			case 33: os << "топоним\n"                  ; break;
+			case 34: os << "организация\n"              ; break;
+			case 35: os << "качественное\n"             ; break;
+			case 36: os << "не имеет числа\n"           ; break;
+			case 37: os << "вопросительное\n"           ; break;
+			case 38: os << "указательное\n"             ; break;
+			case 39: os << "имя\n"                      ; break;
+			case 40: os << "фамилия\n"                  ; break;
+			case 41: os << "безличное\n"                ; break;
+			case 42: os << "сленг\n"                    ; break;
+			case 43: os << "опечатка\n"                 ; break;
+			case 44: os << "разговорный\n"              ; break;
+			case 45: os << "притяжательный\n"           ; break;
+			case 46: os << "архаизм\n"                  ; break;
+			case 47: os << "переносное значение\n"      ; break;
+			case 48: os << "высокий стиль\n"            ; break;
+			case 49: os << "профессия\n"                ; break;
+			case 50: os << "превосходная степень\n"     ; break;
+			case 51: os << "положительная степень\n"    ; break;
 			default: break;
 		}
 	}

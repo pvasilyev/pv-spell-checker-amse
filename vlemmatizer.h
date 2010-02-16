@@ -38,75 +38,75 @@ public:
 	};
 
 	enum Grammem {
-		Plural = 0,
-		Singular = 1,
+		PLURAL = 0,
+		SINGULAR = 1,
 
-		Nominativ = 2,
-		Genitiv = 3,
-		Dativ = 4,
-		Accusativ = 5,
-		Instrumentalis = 6,
-		Locativ = 7,
-		Vocativ = 8,
+		NOMINATIV = 2,
+		GENITIV = 3,
+		DATIV = 4,
+		ACCUSATIV = 5,
+		INSTRUMENTALIS = 6,
+		LOCATIV = 7,
+		VOCATIV = 8,
 
-		Masculinum = 9,
-		Feminum = 10,
-		Neutrum = 11,
-		MascFem = 12,
+		MASCULINUM = 9,
+		FEMINUM = 10,
+		NEUTRUM = 11,
+		MASCFEM = 12,
 
-		ShortForm = 13,
+		SHORTFORM = 13,
 
-		PresentTense = 14,
-		FutureTense = 15,
-		PastTense = 16,
+		PRESENTTENSE = 14,
+		FUTURETENSE = 15,
+		PASTTENSE = 16,
 
-		FirstPerson = 17,
-		SecondPerson = 18,
-		ThirdPerson = 19,
+		FIRSTPERSON = 17,
+		SECONDPERSON = 18,
+		THIRDPERSON = 19,
 
-		Imperative = 20,
+		IMPERATIV = 20,
 
-		Animative = 21,
-		NonAnimative = 22,
+		ANIMATIVE = 21,
+		NONANIMATIV = 22,
 
-		Comparative = 23,
+		COMPARATIVE = 23,
 
-		Perfective = 24,
-		NonPerfective = 25,
+		PERFECTIVE = 24,
+		NONPERFECTIVE = 25,
 
-		NonTransitive = 26,
-		Transitive = 27,
+		NONTRANSITIVE = 26,
+		TRANSITIVE = 27,
 
-		ActiveVoice = 28,
-		PassiveVoice = 29,
+		ACTIVEVOICE = 28,
+		PASSIVEVOICE = 29,
 
-		Indeclinable = 30,
-		Initialism = 31,
+		INDECLINABLE = 30,
+		INITIALISM = 31,
 
-		Patronymic = 32,
+		PATRONOMIC = 32,
 
-		Toponym = 33,
-		Organisation = 34,
+		TOPONYM = 33,
+		ORGANISATION = 34,
 
-		Qualitative = 35,
-		DeFactoSingTantum = 36,
+		QUALITATIVE = 35,
+		DEFACTOSINGTANTUM = 36,
 
-		Interrogative = 37,
-		Demonstrative = 38,
+		INTERROGATIVE = 37,
+		DEMONSTRATIVE = 38,
 
-		Name = 39,
-		SurName = 40,
-		Impersonal = 41,
-		Slang = 42,
-		Misprint = 43,
-		Colloquial = 44,
-		Possessive = 45,
-		Archaism = 46,
-		SecondCase = 47,
-		Poetry = 48,
-		Profession = 49,
-		Superlative = 50,
-		Positive = 51
+		NAME = 39,
+		SURNAME = 40,
+		IMPERSONAL = 41,
+		SLANG = 42,
+		MISPRINT = 43,
+		COLLOQUIAL = 44,
+		POSSESIVE = 45,
+		ARCHAISM = 46,
+		SECONDCASE = 47,
+		POETRY = 48,
+		PROFESSION = 49,
+		SUPERLATIVE = 50,
+		POSITIVE = 51
 	};
 
 private:
