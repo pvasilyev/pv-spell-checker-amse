@@ -7,11 +7,6 @@ Here is information about pv-spell-checker-amse project
 
 = Details =
 
-*http://lemmatizer.org/* -- site with _lemmatizer_ library.
+*http://lemmatizer.org/ * -- site with _lemmatizer_ library.
 
-*http://aot.ru/* -- site with various libraries for _russian language_ parsing.
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+*http://aot.ru/ * -- site with various libraries for _russian language_ parsing.
