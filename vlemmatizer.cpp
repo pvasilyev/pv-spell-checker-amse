@@ -19,6 +19,7 @@ VLemmatizer::~VLemmatizer(){
 
 WordDescription::WordDescription(WordDescription::PartOfSpeech partOfSpeech, u_int64_t iGr) {
 	myPartOfSpeech = partOfSpeech;
+	myGrammem = iGr;
 	for (int i = 0; i < 51; ++i) {
 		if (iGr & ((u_int64_t)1 << i)) {
 			myGrammems.push_back((Grammem)i);

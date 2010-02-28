@@ -112,18 +112,19 @@ public:
 private:
 	WordDescription::PartOfSpeech myPartOfSpeech;
 	std::vector<WordDescription::Grammem> myGrammems;
+	u_int64_t myGrammem;
 
-private:
 	WordDescription(PartOfSpeech partOfSpeech, u_int64_t iGr);
 
 public:
 	WordDescription::PartOfSpeech &getPartOfSpeech();
 	std::vector<Grammem> &getGrammems();
 
-	void printPartOfSpeech(std::ostream &out);
-	void printGrammems(std::ostream &out);
+	void printPartOfSpeech(std::ostream &os);
+	void printGrammems(std::ostream &os);
 
 	friend class VLemmatizer;
+	friend class Syntax;
 };
 
 class VLemmatizer{
@@ -144,4 +145,4 @@ public:
 	std::vector<WordDescription> lemmatize(const std::string &word) const;
 };
 
-#endif //_VASILIEV_VLEMMATIZER_H_
+#endif //_VASILIEV_LEMMATIZER_H_
