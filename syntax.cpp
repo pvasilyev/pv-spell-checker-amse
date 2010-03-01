@@ -2,6 +2,7 @@
 #include <string>
 #include <ostream>
 #include <iostream>
+#include "vlemmatizer.h"
 
 Syntax::Syntax(std::string &sentence) {
 
@@ -68,37 +69,52 @@ bool Syntax::isWord(std::string &string) const {
 	else return true;
 }
 
+bool isPredicateInCoordination(std::vector<std::vector<WordDescription> > &predicate) {
+
+	bool b = true;
+//	for (std::vector<std::vector>)
+	return b;
+}
 
 void Syntax::print(std::ostream &os, std::string &sent) {
-	os << sent << "\n" << "\n";
-	os << "Варианты подлежащего:" << "\n";
-	for (std::vector<std::string>::iterator it = myObject.begin(); it != myObject.end(); ++it) {
-		os << (*it) << "\n";
-	}
-	os << "Варианты сказуемого:" << "\n";
-	for (std::vector<std::string>::iterator it = myPredicate.begin(); it != myPredicate.end(); ++it) {
-		os << (*it) << "\n";
-	}
-	os << "\n";
+//	os << sent << "\n" << "\n";
+//	os << "Варианты подлежащего:" << "\n";
+//	for (std::vector<std::string>::iterator it = myObject.begin(); it != myObject.end(); ++it) {
+//		os << (*it) << "\n";
+//	}
+//	os << "Варианты сказуемого:" << "\n";
+//	for (std::vector<std::string>::iterator it = myPredicate.begin(); it != myPredicate.end(); ++it) {
+//		os << (*it) << "\n";
+//	}
+//	os << "\n";
 }
 
 void Syntax::parse() {
 	for (std::vector<std::vector<WordDescription> >::iterator it = myWordDescription.begin(); it != myWordDescription.end(); ++it ) {
 		for (std::vector<WordDescription>::iterator jt = it->begin(); jt != it->end(); ++jt) {
-			// существительное + именительный падеж
+			// существительное + именительный падеж -- кандидат на подлежащее
 			if ((*jt).myPartOfSpeech == 0 && ((*jt).myGrammem & ((u_int64_t)1 << 2))) {
 				myObject.push_back(mySentenceUnit[it - myWordDescription.begin()]);
 			}
 
-			// местоимение + именительный падеж
+			// местоимение + именительный падеж -- кандидат на подлежащее
 			if ((*jt).myPartOfSpeech == 3 && ((*jt).myGrammem & ((u_int64_t)1 << 2))) {
 				myObject.push_back(mySentenceUnit[it - myWordDescription.begin()]);
 			}
 
-			// глагол
+			// глагол -- кандидат на сказуемое 
 			if ((*jt).myPartOfSpeech == 2) {
 				myPredicate.push_back(mySentenceUnit[it - myWordDescription.begin()]);
 			}
 		}
 	}
+
+// a priori выкинуть неподходящее сказуемое
+	VLemmatizer lem_temp;
+	std::vector<std::vector<WordDescription> > predicate;
+	for (std::vector<std::string>::iterator it = myPredicate.begin(); it != myPredicate.end(); ++it) {
+		std::vector<WordDescription> temp = lem_temp.lemmatize(*it);
+		predicate.push_back(temp);
+	}
+	
 }

@@ -32,12 +32,13 @@ private:
 	std::vector<std::string> myPredicate;
 
 	bool isWord(std::string &string) const;
+	bool isPredicateInCoordination(std::vector<std::vector<WordDescription> > &predicate) ;
 
 public:
 	explicit Syntax(std::string &sentence);
 
 	void parse();
-	void print(std::ostream &os, std::string &sent);	
+	void print(std::ostream &os, std::string &sent);
 
 };
 
