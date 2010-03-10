@@ -1,9 +1,14 @@
+#include <string>
+#include <vector>
+
 #ifndef _SYNTAX_H_
 #define _SYNTAX_H_
 
-#include <vector>
-#include <string>
+#include "complexsentence.h"
 #include "vlemmatizer.h"
+
+class ComplexSentence;
+class SimpleSentence;
 
 class SentencePartName {
 
@@ -21,15 +26,26 @@ public:
 
 };
 
+class SourceSentenceUnit {
 
+public:
+	std::vector<WordDescription> myWD;
+	std::string myText;
+	bool isWord;
+
+};
 
 class Syntax {
 
 private:
 	std::vector<std::string> mySentenceUnit;
 	std::vector<std::vector<WordDescription> > myWordDescription;
-	std::vector<std::string> myObject;
-	std::vector<std::string> myPredicate;
+	std::vector<std::string> myObject;	// подлежащие
+	std::vector<std::string> myPredicate;	// сказуемые
+
+	std::vector<SourceSentenceUnit> *mySSUnits;	// исходные "сырые" данные
+
+	ComplexSentence *myComplexSentence;
 
 	bool isWord(std::string &string) const;
 	bool isPredicateInCoordination(std::vector<std::vector<WordDescription> > &predicate) ;

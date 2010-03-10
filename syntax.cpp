@@ -1,7 +1,8 @@
-#include "syntax.h"
-#include <string>
-#include <ostream>
 #include <iostream>
+#include <ostream>
+#include <string>
+
+#include "syntax.h"
 #include "vlemmatizer.h"
 
 Syntax::Syntax(std::string &sentence) {
@@ -49,14 +50,22 @@ Syntax::Syntax(std::string &sentence) {
 	VLemmatizer lem;
 
 	for (std::vector<std::string>::iterator it = mySentenceUnit.begin(); it != mySentenceUnit.end(); ++it) {
+		SourceSentenceUnit tmp;
 		if (isWord(*it)) {
 			std::vector<WordDescription> result = lem.lemmatize(*it);
 			myWordDescription.push_back(result);
+			tmp.isWord = true;
+			tmp.myWD = result;
+			tmp.myText = (*it);
 		}
 		else {
 			std::vector<WordDescription> result;
 			myWordDescription.push_back(result);
+			tmp.isWord = false;
+			tmp.myWD = result;
+			tmp.myText = (*it);
 		}
+		mySSUnits->push_back(tmp);
 	}
 }
 
@@ -90,31 +99,12 @@ void Syntax::print(std::ostream &os, std::string &sent) {
 }
 
 void Syntax::parse() {
-	for (std::vector<std::vector<WordDescription> >::iterator it = myWordDescription.begin(); it != myWordDescription.end(); ++it ) {
-		for (std::vector<WordDescription>::iterator jt = it->begin(); jt != it->end(); ++jt) {
-			// существительное + именительный падеж -- кандидат на подлежащее
-			if ((*jt).myPartOfSpeech == 0 && ((*jt).myGrammem & ((u_int64_t)1 << 2))) {
-				myObject.push_back(mySentenceUnit[it - myWordDescription.begin()]);
-			}
+// разбор
+	ComplexSentence *p = new ComplexSentence(*mySSUnits);
+	myComplexSentence = p;
 
-			// местоимение + именительный падеж -- кандидат на подлежащее
-			if ((*jt).myPartOfSpeech == 3 && ((*jt).myGrammem & ((u_int64_t)1 << 2))) {
-				myObject.push_back(mySentenceUnit[it - myWordDescription.begin()]);
-			}
+	myComplexSentence->parse_cs();
 
-			// глагол -- кандидат на сказуемое 
-			if ((*jt).myPartOfSpeech == 2) {
-				myPredicate.push_back(mySentenceUnit[it - myWordDescription.begin()]);
-			}
-		}
-	}
 
-// a priori выкинуть неподходящее сказуемое
-	VLemmatizer lem_temp;
-	std::vector<std::vector<WordDescription> > predicate;
-	for (std::vector<std::string>::iterator it = myPredicate.begin(); it != myPredicate.end(); ++it) {
-		std::vector<WordDescription> temp = lem_temp.lemmatize(*it);
-		predicate.push_back(temp);
-	}
-	
+	delete myComplexSentence;
 }

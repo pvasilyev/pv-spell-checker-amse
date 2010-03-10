@@ -125,6 +125,9 @@ public:
 
 	friend class VLemmatizer;
 	friend class Syntax;
+	friend class SimpleSentence;
+	friend class ComplexSentence;
+	friend class SentenceManager;
 };
 
 class VLemmatizer{
