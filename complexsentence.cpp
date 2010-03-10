@@ -1,6 +1,7 @@
 #include <vector>
 
 #include "complexsentence.h"
+#include "simplesentence.h"
 #include "syntax.h"
 
 ComplexSentence::ComplexSentence(std::vector<SourceSentenceUnit> &ssu) {

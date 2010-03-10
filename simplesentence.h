@@ -1,7 +1,7 @@
-#include <vector>
-
 #ifndef _SIMPLE_SENTENCE_H_
 #define _SIMPLE_SENTENCE_H_
+
+#include <vector>
 
 #include "complexsentence.h"
 #include "grammarframe.h"

@@ -1,7 +1,7 @@
-#include <vector>
-
 #ifndef _GRAMMAR_FRAME_H_
 #define _GRAMMAR_FRAME_H_
+
+#include <vector>
 
 #include "syntax.h"
 #include "vlemmatizer.h"

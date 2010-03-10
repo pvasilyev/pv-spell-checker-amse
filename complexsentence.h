@@ -1,11 +1,10 @@
-#include <vector>
-
 #ifndef _COMPLEX_SENTENCE_H_
 #define _COMPLEX_SENTENCE_H_
 
-#include "simplesentence.h"
+#include <vector>
+
 #include "sentencemanager.h"
-#include "syntax.h"
+#include "simplesentence.h"
 
 class SourceSentenceUnit;
 class SimpleSentence;

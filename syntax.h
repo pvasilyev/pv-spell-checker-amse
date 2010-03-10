@@ -1,8 +1,8 @@
-#include <string>
-#include <vector>
-
 #ifndef _SYNTAX_H_
 #define _SYNTAX_H_
+
+#include <string>
+#include <vector>
 
 #include "vlemmatizer.h"
 
