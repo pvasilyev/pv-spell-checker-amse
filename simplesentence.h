@@ -7,20 +7,27 @@
 #include "grammarframe.h"
 #include "grammarunits.h"
 #include "syntax.h"
+#include "vlemmatizer.h"
 
 class ComplexSentence;
+class GrammarFrame;
+class GrammarUnits;
 class SourceSentenceUnit;
 
 class SimpleSentence {
 
 private:
-	GrammarFrame myGrammarFrame;
-	GrammarUnits myGrammarUnits;
+	GrammarFrame *myGrammarFrame;
+	GrammarUnits *myGrammarUnits;
+
+	std::vector<std::vector<WordDescription>::iterator> *myObject;
+	std::vector<std::vector<WordDescription>::iterator> *myPredicate;
 
 	std::vector<SourceSentenceUnit> *mySSU_SS;
 
 public:
-	SimpleSentence(const std::vector<SourceSentenceUnit> &ssu);
+	SimpleSentence(std::vector<SourceSentenceUnit> &ssu);
+	~SimpleSentence();
 
 	void parse_ss();
 

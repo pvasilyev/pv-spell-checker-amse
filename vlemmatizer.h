@@ -123,11 +123,13 @@ public:
 	void printPartOfSpeech(std::ostream &os);
 	void printGrammems(std::ostream &os);
 
-	friend class VLemmatizer;
-	friend class Syntax;
-	friend class SimpleSentence;
 	friend class ComplexSentence;
+	friend class GrammarFrame;
+	friend class GrammarUnits;
 	friend class SentenceManager;
+	friend class SimpleSentence;
+	friend class Syntax;
+	friend class VLemmatizer;
 };
 
 class VLemmatizer{

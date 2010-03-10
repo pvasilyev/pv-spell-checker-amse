@@ -19,7 +19,7 @@ private:
 	std::vector<SourceSentenceUnit> *mySSU_CS;
 
 public:
-	ComplexSentence(const std::vector<SourceSentenceUnit> &ssu);
+	ComplexSentence(std::vector<SourceSentenceUnit> &ssu);
 
 	void parse_cs();
 

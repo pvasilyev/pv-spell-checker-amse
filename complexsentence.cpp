@@ -3,9 +3,10 @@
 #include "complexsentence.h"
 #include "syntax.h"
 
-ComplexSentence::ComplexSentence(const std::vector<SourceSentenceUnit> &ssu) {
-	*mySSU_CS = ssu;
+ComplexSentence::ComplexSentence(std::vector<SourceSentenceUnit> &ssu) {
+	mySSU_CS = &ssu;
 }
+
 
 void ComplexSentence::parse_cs() {
 

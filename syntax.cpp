@@ -3,6 +3,7 @@
 #include <string>
 
 #include "syntax.h"
+#include "complexsentence.h"
 #include "vlemmatizer.h"
 
 Syntax::Syntax(std::string &sentence) {
@@ -67,8 +68,14 @@ Syntax::Syntax(std::string &sentence) {
 		}
 		mySSUnits->push_back(tmp);
 	}
+
+	ComplexSentence *p = new ComplexSentence(*mySSUnits);
+	myComplexSentence = p;
 }
 
+Syntax::~Syntax() {
+	delete myComplexSentence;
+}
 
 bool Syntax::isWord(std::string &string) const {
 
@@ -100,11 +107,7 @@ void Syntax::print(std::ostream &os, std::string &sent) {
 
 void Syntax::parse() {
 // разбор
-	ComplexSentence *p = new ComplexSentence(*mySSUnits);
-	myComplexSentence = p;
 
 	myComplexSentence->parse_cs();
 
-
-	delete myComplexSentence;
 }
