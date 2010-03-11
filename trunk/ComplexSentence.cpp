@@ -1,6 +1,7 @@
 #include <vector>
 
 #include "ComplexSentence.h"
+#include "SentenceManager.h"
 #include "SimpleSentence.h"
 #include "Syntax.h"
 

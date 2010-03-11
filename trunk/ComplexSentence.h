@@ -3,11 +3,10 @@
 
 #include <vector>
 
-#include "SentenceManager.h"
-#include "SimpleSentence.h"
-
-class SourceSentenceUnit;
+class SentenceManager;
 class SimpleSentence;
+class SourceSentenceUnit;
+class Syntax;
 
 class ComplexSentence {
 
@@ -24,4 +23,4 @@ public:
 
 };
 
-#endif
+#endif // _COMPLEX_SENTENCE_H_

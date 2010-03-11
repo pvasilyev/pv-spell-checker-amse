@@ -3,10 +3,8 @@
 
 #include <vector>
 
-#include "Syntax.h"
-#include "VLemmatizer.h"
-
 class SourceSentenceUnit;
+class WordDescription;
 
 class GrammarFrame {
 
@@ -27,4 +25,4 @@ public:
 
 };
 
-#endif
+#endif // _GRAMMAR_FRAME_H_

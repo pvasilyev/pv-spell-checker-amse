@@ -3,16 +3,12 @@
 
 #include <vector>
 
-#include "ComplexSentence.h"
-#include "GrammarFrame.h"
-#include "GrammarUnits.h"
-#include "Syntax.h"
-#include "VLemmatizer.h"
-
 class ComplexSentence;
 class GrammarFrame;
 class GrammarUnits;
+class SentenceManager;
 class SourceSentenceUnit;
+class WordDescription;
 
 class SimpleSentence {
 
@@ -33,4 +29,4 @@ public:
 
 };
 
-#endif
+#endif // _SIMPLE_SENTENCE_H_

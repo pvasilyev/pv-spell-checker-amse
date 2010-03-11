@@ -4,12 +4,11 @@
 #include <string>
 #include <vector>
 
-#include "VLemmatizer.h"
-
 class ComplexSentence;
 class GrammarFrame;
 class GrammarUnits;
 class SimpleSentence;
+class WordDescription;
 
 class SourceSentenceUnit {
 

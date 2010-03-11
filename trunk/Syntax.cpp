@@ -4,6 +4,7 @@
 
 #include "Syntax.h"
 #include "ComplexSentence.h"
+#include "SimpleSentence.h"
 #include "VLemmatizer.h"
 
 Syntax::Syntax(std::string &sentence) {

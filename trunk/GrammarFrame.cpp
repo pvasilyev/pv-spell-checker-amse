@@ -1,4 +1,6 @@
 #include "GrammarFrame.h"
+#include "Syntax.h"
+#include "VLemmatizer.h"
 
 GrammarFrame::GrammarFrame(std::vector<SourceSentenceUnit> &ssu) {
 	mySSU_GF = &ssu;
