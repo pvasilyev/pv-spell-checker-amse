@@ -1,6 +1,11 @@
 #include <vector>
 
+#include "ComplexSentence.h"
+#include "GrammarFrame.h"
+#include "GrammarUnits.h"
 #include "SimpleSentence.h"
+#include "Syntax.h"
+#include "VLemmatizer.h"
 
 SimpleSentence::SimpleSentence(std::vector<SourceSentenceUnit> &ssu) {
 	mySSU_SS = &ssu;
