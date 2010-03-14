@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 
-#include "Syntax.h"
+#include "SyntaxAnalyzer.h"
 #include "VLemmatizer.h"
 
 int main(int argc, char **argv){
@@ -16,9 +16,9 @@ int main(int argc, char **argv){
 	while (!inFile.eof()) {
 		std::getline(inFile, sentence);
 		if (sentence != "") {
-			Syntax s(sentence);
+			SyntaxAnalyzer s(sentence);
 			s.parse();
-			s.print(std::cout, sentence);
+			s.print(std::cout);
 		}
 	}
 

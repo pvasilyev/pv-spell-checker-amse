@@ -6,8 +6,8 @@ clean:
 VLemmatizer.o: VLemmatizer.cpp VLemmatizer.h
 	g++ -c VLemmatizer.cpp -Wall
 
-Syntax.o: Syntax.cpp Syntax.h
-	g++ -c Syntax.cpp -Wall
+SyntaxAnalyzer.o: SyntaxAnalyzer.cpp SyntaxAnalyzer.h
+	g++ -c SyntaxAnalyzer.cpp -Wall
 
 GrammarFrame.o: GrammarFrame.cpp GrammarFrame.h
 	g++ -c GrammarFrame.cpp -Wall
@@ -27,5 +27,5 @@ SentenceManager.o: SentenceManager.cpp SentenceManager.h
 main.o: main.cpp
 	g++ -c main.cpp -Wall
 
-program: VLemmatizer.o Syntax.o GrammarFrame.o GrammarUnits.o SimpleSentence.o ComplexSentence.o SentenceManager.o main.o
-	g++ main.o VLemmatizer.o Syntax.o GrammarFrame.o GrammarUnits.o SimpleSentence.o ComplexSentence.o SentenceManager.o -lturglem -lMAFSA -lturglem-russian -o program -Wall
+program: VLemmatizer.o SyntaxAnalyzer.o GrammarFrame.o GrammarUnits.o SimpleSentence.o ComplexSentence.o SentenceManager.o main.o
+	g++ main.o VLemmatizer.o SyntaxAnalyzer.o GrammarFrame.o GrammarUnits.o SimpleSentence.o ComplexSentence.o SentenceManager.o -lturglem -lMAFSA -lturglem-russian -o program -Wall

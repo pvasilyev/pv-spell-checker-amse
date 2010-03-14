@@ -8,6 +8,13 @@ class WordDescription;
 
 class GrammarFrame {
 
+public:
+	GrammarFrame(std::vector<SourceSentenceUnit> &ssu);
+
+	void buildGrammarFrame();
+
+	std::vector<std::vector<WordDescription>::iterator> *getGrammarFrame();
+
 private:
 	std::vector<std::vector<WordDescription>::iterator> *myGrammarFrame;
 
@@ -15,13 +22,6 @@ private:
 
 	std::vector<std::vector<WordDescription>::iterator> *myObject;
 	std::vector<std::vector<WordDescription>::iterator> *myPredicate;
-
-public:
-	GrammarFrame(std::vector<SourceSentenceUnit> &ssu);
-
-	void buildGrammarFrame();
-
-	std::vector<std::vector<WordDescription>::iterator> *getGrammarFrame();
 
 };
 
