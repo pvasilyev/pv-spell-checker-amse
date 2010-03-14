@@ -12,6 +12,12 @@ class WordDescription;
 
 class SimpleSentence {
 
+public:
+	SimpleSentence(std::vector<SourceSentenceUnit> &ssu);
+	~SimpleSentence();
+
+	void parse_ss();
+
 private:
 	GrammarFrame *myGrammarFrame;
 	GrammarUnits *myGrammarUnits;
@@ -20,12 +26,6 @@ private:
 	std::vector<std::vector<WordDescription>::iterator> *myPredicate;
 
 	std::vector<SourceSentenceUnit> *mySSU_SS;
-
-public:
-	SimpleSentence(std::vector<SourceSentenceUnit> &ssu);
-	~SimpleSentence();
-
-	void parse_ss();
 
 };
 

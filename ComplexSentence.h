@@ -6,7 +6,7 @@
 class SentenceManager;
 class SimpleSentence;
 class SourceSentenceUnit;
-class Syntax;
+class SyntaxAnalyzer;
 
 class ComplexSentence {
 

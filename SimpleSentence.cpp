@@ -4,7 +4,7 @@
 #include "GrammarFrame.h"
 #include "GrammarUnits.h"
 #include "SimpleSentence.h"
-#include "Syntax.h"
+#include "SyntaxAnalyzer.h"
 #include "VLemmatizer.h"
 
 SimpleSentence::SimpleSentence(std::vector<SourceSentenceUnit> &ssu) {

@@ -3,7 +3,7 @@
 #include "ComplexSentence.h"
 #include "SentenceManager.h"
 #include "SimpleSentence.h"
-#include "Syntax.h"
+#include "SyntaxAnalyzer.h"
 
 ComplexSentence::ComplexSentence(std::vector<SourceSentenceUnit> &ssu) {
 	mySSU_CS = &ssu;
