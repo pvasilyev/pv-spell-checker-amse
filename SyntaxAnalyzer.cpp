@@ -2,12 +2,12 @@
 #include <ostream>
 #include <string>
 
-#include "Syntax.h"
+#include "SyntaxAnalyzer.h"
 #include "ComplexSentence.h"
 #include "SimpleSentence.h"
 #include "VLemmatizer.h"
 
-Syntax::Syntax(std::string &sentence) {
+SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
 
 
 // parse words and symbols like ','
@@ -15,6 +15,7 @@ Syntax::Syntax(std::string &sentence) {
 
 	std::string temp;
 	for (std::string::iterator it = sentence.begin(); it != sentence.end(); ++it) {
+		SourceSentenceUnit tmp;
 		if (temp.empty()) {
 			if ((*it) == '"' || (*it) == '\'' || (*it) == '-') {
 				temp.push_back(*it);
@@ -74,11 +75,11 @@ Syntax::Syntax(std::string &sentence) {
 	myComplexSentence = p;
 }
 
-Syntax::~Syntax() {
+SyntaxAnalyzer::~SyntaxAnalyzer() {
 	delete myComplexSentence;
 }
 
-bool Syntax::isWord(std::string &string) const {
+bool SyntaxAnalyzer::isWord(std::string &string) const {
 
 	bool b = (string.find(',') != std::string::npos || string.find(':') != std::string::npos || string.find(';') != std::string::npos || string.find('-') != std::string::npos || string.find('"') != std::string::npos || string.find('\'') != std::string::npos || string.find('!') != std::string::npos || string.find('?') != std::string::npos || string.find('.') != std::string::npos);
 
@@ -93,7 +94,7 @@ bool isPredicateInCoordination(std::vector<std::vector<WordDescription> > &predi
 	return b;
 }
 
-void Syntax::print(std::ostream &os, std::string &sent) {
+void SyntaxAnalyzer::print(std::ostream &os) {
 //	os << sent << "\n" << "\n";
 //	os << "Варианты подлежащего:" << "\n";
 //	for (std::vector<std::string>::iterator it = myObject.begin(); it != myObject.end(); ++it) {
@@ -106,7 +107,7 @@ void Syntax::print(std::ostream &os, std::string &sent) {
 //	os << "\n";
 }
 
-void Syntax::parse() {
+void SyntaxAnalyzer::parse() {
 // разбор
 
 	myComplexSentence->parse_cs();
