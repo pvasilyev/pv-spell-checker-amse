@@ -1,6 +1,7 @@
 #ifndef _COMPLEX_SENTENCE_H_
 #define _COMPLEX_SENTENCE_H_
 
+#include <ostream>
 #include <vector>
 
 class SentenceManager;
@@ -10,17 +11,17 @@ class SyntaxAnalyzer;
 
 class ComplexSentence {
 
+public:
+	ComplexSentence(std::vector<SourceSentenceUnit> &ssu);
+
+	void parse_cs();
+	void print_cs(std::ostream &os);
+
 private:
 	std::vector<SimpleSentence> myVectorSimpleSentence;
 	SentenceManager *mySentenceManager;
 
 	std::vector<SourceSentenceUnit> *mySSU_CS;
-
-public:
-	ComplexSentence(std::vector<SourceSentenceUnit> &ssu);
-
-	void parse_cs();
-
 };
 
 #endif // _COMPLEX_SENTENCE_H_
