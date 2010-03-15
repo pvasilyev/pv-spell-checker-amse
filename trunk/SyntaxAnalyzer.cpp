@@ -15,7 +15,6 @@ SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
 
 	std::string temp;
 	for (std::string::iterator it = sentence.begin(); it != sentence.end(); ++it) {
-		SourceSentenceUnit tmp;
 		if (temp.empty()) {
 			if ((*it) == '"' || (*it) == '\'' || (*it) == '-') {
 				temp.push_back(*it);
@@ -56,18 +55,17 @@ SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
 		SourceSentenceUnit tmp;
 		if (isWord(*it)) {
 			std::vector<WordDescription> result = lem.lemmatize(*it);
-			myWordDescription.push_back(result);
-			tmp.isWord = true;
-			tmp.myWD = result;
-			tmp.myText = (*it);
+		//	tmp.isWord = true;
+		//	tmp.myWD = result;
+		//	tmp.myText = (*it);
 		}
 		else {
 			std::vector<WordDescription> result;
-			myWordDescription.push_back(result);
-			tmp.isWord = false;
-			tmp.myWD = result;
-			tmp.myText = (*it);
+		//	tmp.isWord = false;
+		//	tmp.myWD = result;
+		//	tmp.myText = (*it);
 		}
+		std::cerr << "!";
 		mySSUnits->push_back(tmp);
 	}
 
@@ -95,6 +93,7 @@ bool isPredicateInCoordination(std::vector<std::vector<WordDescription> > &predi
 }
 
 void SyntaxAnalyzer::print(std::ostream &os) {
+	myComplexSentence->print_cs(os);
 //	os << sent << "\n" << "\n";
 //	os << "Варианты подлежащего:" << "\n";
 //	for (std::vector<std::string>::iterator it = myObject.begin(); it != myObject.end(); ++it) {
@@ -109,7 +108,6 @@ void SyntaxAnalyzer::print(std::ostream &os) {
 
 void SyntaxAnalyzer::parse() {
 // разбор
-
 	myComplexSentence->parse_cs();
 
 }

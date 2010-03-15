@@ -2,6 +2,7 @@
 #define _SIMPLE_SENTENCE_H_
 
 #include <vector>
+#include <ostream>
 
 class ComplexSentence;
 class GrammarFrame;
@@ -17,13 +18,16 @@ public:
 	~SimpleSentence();
 
 	void parse_ss();
+	void print_ss(std::ostream &os);
 
 private:
 	GrammarFrame *myGrammarFrame;
 	GrammarUnits *myGrammarUnits;
 
 	std::vector<std::vector<WordDescription>::iterator> *myObject;
+	std::vector<std::vector<SourceSentenceUnit>::iterator> *myObjectText;
 	std::vector<std::vector<WordDescription>::iterator> *myPredicate;
+	std::vector<std::vector<SourceSentenceUnit>::iterator> *myPredicateText;
 
 	std::vector<SourceSentenceUnit> *mySSU_SS;
 

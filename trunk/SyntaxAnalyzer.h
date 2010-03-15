@@ -13,9 +13,13 @@ class WordDescription;
 class SourceSentenceUnit {
 
 public:
-        std::vector<WordDescription> myWD;
-        std::string myText;
-        bool isWord;
+//	SourceSentenceUnit();
+//	SourceSentenceUnit(const SourceSentenceUnit &);
+//	~SourceSentenceUnit();
+
+//	std::vector<WordDescription> myWD;
+//	std::string myText;
+//	bool isWord;
 
 };
 
@@ -27,11 +31,10 @@ public:
         ~SyntaxAnalyzer();
 
         void parse();
-        void print(std::ostream &os, std::string &sent);
+        void print(std::ostream &os);
 
 private:
         std::vector<std::string> mySentenceUnit;
-        std::vector<std::vector<WordDescription> > myWordDescription;
 
         std::vector<SourceSentenceUnit> *mySSUnits;     // исходные "сырые" данные
 

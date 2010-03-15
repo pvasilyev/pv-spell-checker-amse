@@ -1,3 +1,4 @@
+#include <ostream>
 #include <vector>
 
 #include "ComplexSentence.h"
@@ -19,11 +20,23 @@ SimpleSentence::~SimpleSentence() {
 
 void SimpleSentence::parse_ss() {
 
-	//GrammarFrame *p = new GrammarFrame(*mySSU_SS);
-	//myGrammarFrame = p;
-
-	//delete p;
+	myGrammarFrame->buildGrammarFrame();
+	myObject = myGrammarFrame->getObject();
+	myPredicate = myGrammarFrame->getPredicate();
+	myObjectText = myGrammarFrame->getObjectText();
+	myPredicateText = myGrammarFrame->getPredicateText();
 
 }
 
+void SimpleSentence::print_ss(std::ostream &os) {	
+	os << "Варианты подлежащего:" << "\n";
+	for (std::vector<std::vector<SourceSentenceUnit>::iterator>::iterator it = myObjectText->begin(); it != myObjectText->end(); ++it) {
+	//	os << (*it)->myText << "\n";
+	}
+	os << "Варианты сказуемого:" << "\n";
+	for (std::vector<std::vector<SourceSentenceUnit>::iterator>::iterator it = myPredicateText->begin(); it != myPredicateText->end(); ++it) {
+	//	os << (*it)->myText << "\n";
+	}
+	os << "\n";
 
+}

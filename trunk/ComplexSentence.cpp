@@ -1,3 +1,4 @@
+#include <ostream>
 #include <vector>
 
 #include "ComplexSentence.h"
@@ -20,4 +21,11 @@ void ComplexSentence::parse_cs() {
 	}
 
 	delete p;
+}
+
+void ComplexSentence::print_cs(std::ostream &os) {
+	for (std::vector<SimpleSentence>::iterator it = myVectorSimpleSentence.begin(); it != myVectorSimpleSentence.end(); ++it) {
+		it->print_ss(os);
+	}
+	
 }
