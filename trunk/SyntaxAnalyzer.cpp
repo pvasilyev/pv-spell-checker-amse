@@ -67,6 +67,7 @@ SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
 		}
 		std::cerr << "!";
 		mySSUnits->push_back(tmp);
+		std::cerr << "!";
 	}
 
 	ComplexSentence *p = new ComplexSentence(*mySSUnits);
