@@ -29,7 +29,7 @@ public:
 class SyntaxAnalyzer {
 
 public:
-        explicit SyntaxAnalyzer(std::string &sentence);
+        explicit SyntaxAnalyzer(const std::string &sentence);
         ~SyntaxAnalyzer();
 
         void parse();
@@ -43,7 +43,7 @@ private:
         ComplexSentence *myComplexSentence;
 
 private:
-        bool isWord(std::string &string) const;
+        bool isWord(const std::string &string) const;
 
 };
 

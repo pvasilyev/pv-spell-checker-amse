@@ -31,7 +31,8 @@ SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
 				temp.clear();
 			}
 			else {
-				if ((*it) == ',' || (*it) == ':' || (*it) == ';' || (*it) == '-' || (*it) == '"' || (*it) == '\'' || (*it) == '!' || (*it) == '?' || (*it) == '.') {
+				static const std::string specialChars = ",:;-\"'!?.";
+				if (specialChars.find(*it) != std::string::npos) {
 					mySentenceUnit.push_back(temp);
 					temp.clear();
 					temp.push_back(*it);
@@ -79,11 +80,16 @@ SyntaxAnalyzer::~SyntaxAnalyzer() {
 }
 
 bool SyntaxAnalyzer::isWord(std::string &string) const {
-
-	bool b = (string.find(',') != std::string::npos || string.find(':') != std::string::npos || string.find(';') != std::string::npos || string.find('-') != std::string::npos || string.find('"') != std::string::npos || string.find('\'') != std::string::npos || string.find('!') != std::string::npos || string.find('?') != std::string::npos || string.find('.') != std::string::npos);
-
-	if (b) return false;
-	else return true;
+	return
+		string.find(',') == std::string::npos &&
+		string.find(':') == std::string::npos &&
+		string.find(';') == std::string::npos &&
+		string.find('-') == std::string::npos &&
+		string.find('"') == std::string::npos &&
+		string.find('\'') == std::string::npos &&
+		string.find('!') == std::string::npos &&
+		string.find('?') == std::string::npos &&
+		string.find('.') == std::string::npos;
 }
 
 void SyntaxAnalyzer::print(std::ostream &os) {

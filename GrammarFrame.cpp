@@ -13,12 +13,13 @@ void GrammarFrame::buildGrammarFrame() {
 	for (std::vector<SourceSentenceUnit>::iterator it = (mySSU_GF).begin(); it != (mySSU_GF).end(); ++it ) {
 		for (std::vector<WordDescription>::iterator jt = (it->myWD).begin(); jt != (it->myWD).end(); ++jt) {
 			// существительное + именительный падеж -- кандидат на подлежащее
-			if ((*jt).myPartOfSpeech == 0 && ((*jt).myGrammem & ((u_int64_t)1 << 2))) {
+			if ((*jt).myPartOfSpeech == 0 && ((*jt).myGrammem & ИМЕНИТЕЛЬНЫЙ_ПАДЕЖ)) {
 				bool b = true;
 				if (it != mySSU_GF.begin()) {
 					--it;
 					for (std::vector<WordDescription>::iterator kt = (it->myWD).begin(); kt != (it->myWD).end(); ++kt) {
-						if ((*kt).myPartOfSpeech == 10 || ((*kt).myPartOfSpeech == 1 && ((*kt).myGrammem & !(u_int64_t)1 << 2))) {
+						if ((*kt).myPartOfSpeech == 10 ||
+							  ((*kt).myPartOfSpeech == 1 && ((*kt).myGrammem & !(u_int64_t)1 << 2))) {
 							b = false;
 						}
 					}
