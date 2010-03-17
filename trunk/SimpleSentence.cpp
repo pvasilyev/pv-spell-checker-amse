@@ -11,18 +11,13 @@
 
 SimpleSentence::SimpleSentence(std::vector<SourceSentenceUnit> &ssu) {
 	mySSU_SS = ssu;
-	GrammarFrame *p = new GrammarFrame(mySSU_SS);
-	myGrammarFrame = p;
 }
 
 SimpleSentence::~SimpleSentence() {
-	delete myGrammarFrame;
 }
 
 SimpleSentence::SimpleSentence(const SimpleSentence &ss) {
 	mySSU_SS = ss.mySSU_SS;
-	GrammarFrame *p = new GrammarFrame(mySSU_SS);
-	myGrammarFrame = p;
 	myObject = ss.myObject;
 	myPredicate = ss.myPredicate;
 	myObjectText = ss.myObjectText;
@@ -30,13 +25,13 @@ SimpleSentence::SimpleSentence(const SimpleSentence &ss) {
 }
 
 void SimpleSentence::parse_ss() {
+	GrammarFrame frame(mySSU_SS);
 
-	myGrammarFrame->buildGrammarFrame();
-	myObject = myGrammarFrame->getObject();
-	myPredicate = myGrammarFrame->getPredicate();
-	myObjectText = myGrammarFrame->getObjectText();
-	myPredicateText = myGrammarFrame->getPredicateText();
-
+	frame.buildGrammarFrame();
+	myObject = frame.getObject();
+	myPredicate = frame.getPredicate();
+	myObjectText = frame.getObjectText();
+	myPredicateText = frame.getPredicateText();
 }
 
 void SimpleSentence::print_ss(std::ostream &os) {	
