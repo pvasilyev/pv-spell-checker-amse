@@ -55,22 +55,22 @@ SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
 		SourceSentenceUnit tmp;
 		if (isWord(*it)) {
 			std::vector<WordDescription> result = lem.lemmatize(*it);
-		//	tmp.isWord = true;
-		//	tmp.myWD = result;
-		//	tmp.myText = (*it);
+			tmp.isWord = true;
+			tmp.myWD = result;
+			tmp.myText = (*it);
 		}
 		else {
 			std::vector<WordDescription> result;
-		//	tmp.isWord = false;
-		//	tmp.myWD = result;
-		//	tmp.myText = (*it);
+			tmp.isWord = false;
+			tmp.myWD = result;
+			tmp.myText = (*it);
 		}
-		std::cerr << "!";
-		mySSUnits->push_back(tmp);
-		std::cerr << "!";
+//std::cerr << "!";
+		mySSUnits.push_back(tmp);
+//std::cerr << "!";
 	}
 
-	ComplexSentence *p = new ComplexSentence(*mySSUnits);
+	ComplexSentence *p = new ComplexSentence(mySSUnits);
 	myComplexSentence = p;
 }
 
@@ -84,13 +84,6 @@ bool SyntaxAnalyzer::isWord(std::string &string) const {
 
 	if (b) return false;
 	else return true;
-}
-
-bool isPredicateInCoordination(std::vector<std::vector<WordDescription> > &predicate) {
-
-	bool b = true;
-//	for (std::vector<std::vector>)
-	return b;
 }
 
 void SyntaxAnalyzer::print(std::ostream &os) {

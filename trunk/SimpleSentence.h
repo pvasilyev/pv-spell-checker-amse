@@ -15,6 +15,7 @@ class SimpleSentence {
 
 public:
 	SimpleSentence(std::vector<SourceSentenceUnit> &ssu);
+	SimpleSentence(const SimpleSentence &ss);
 	~SimpleSentence();
 
 	void parse_ss();
@@ -22,14 +23,14 @@ public:
 
 private:
 	GrammarFrame *myGrammarFrame;
-	GrammarUnits *myGrammarUnits;
+	//GrammarUnits *myGrammarUnits;
 
-	std::vector<std::vector<WordDescription>::iterator> *myObject;
-	std::vector<std::vector<SourceSentenceUnit>::iterator> *myObjectText;
-	std::vector<std::vector<WordDescription>::iterator> *myPredicate;
-	std::vector<std::vector<SourceSentenceUnit>::iterator> *myPredicateText;
+	std::vector<std::vector<WordDescription>::iterator> myObject;
+	std::vector<std::vector<SourceSentenceUnit>::iterator> myObjectText;
+	std::vector<std::vector<WordDescription>::iterator> myPredicate;
+	std::vector<std::vector<SourceSentenceUnit>::iterator> myPredicateText;
 
-	std::vector<SourceSentenceUnit> *mySSU_SS;
+	std::vector<SourceSentenceUnit> mySSU_SS;
 
 };
 
