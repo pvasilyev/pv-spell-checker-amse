@@ -8,6 +8,7 @@ class SentenceManager;
 class SimpleSentence;
 class SourceSentenceUnit;
 class SyntaxAnalyzer;
+class WordDescription;
 
 class ComplexSentence {
 
@@ -19,9 +20,9 @@ public:
 
 private:
 	std::vector<SimpleSentence> myVectorSimpleSentence;
-	SentenceManager *mySentenceManager;
+	//SentenceManager *mySentenceManager;
 
-	std::vector<SourceSentenceUnit> *mySSU_CS;
+	std::vector<SourceSentenceUnit> mySSU_CS;
 };
 
 #endif // _COMPLEX_SENTENCE_H_

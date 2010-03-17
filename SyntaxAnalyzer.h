@@ -10,6 +10,7 @@ class GrammarUnits;
 class SimpleSentence;
 class WordDescription;
 
+
 class SourceSentenceUnit {
 
 public:
@@ -17,11 +18,12 @@ public:
 //	SourceSentenceUnit(const SourceSentenceUnit &);
 //	~SourceSentenceUnit();
 
-//	std::vector<WordDescription> myWD;
-//	std::string myText;
-//	bool isWord;
+	std::vector<WordDescription> myWD;
+	std::string myText;
+	bool isWord;
 
 };
+
 
 
 class SyntaxAnalyzer {
@@ -36,13 +38,12 @@ public:
 private:
         std::vector<std::string> mySentenceUnit;
 
-        std::vector<SourceSentenceUnit> *mySSUnits;     // исходные "сырые" данные
+        std::vector<SourceSentenceUnit> mySSUnits;     // исходные "сырые" данные
 
         ComplexSentence *myComplexSentence;
 
 private:
         bool isWord(std::string &string) const;
-        bool isPredicateInCoordination(std::vector<std::vector<WordDescription> > &predicate) ;
 
 };
 
@@ -59,7 +60,7 @@ public:
                 PARTICIPIAL = 5,        //деепричастный/причастный оборот
         };
 
-        friend class Syntax;
+        friend class SyntaxAnalyzer;
 
 };
 

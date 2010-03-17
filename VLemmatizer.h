@@ -128,7 +128,7 @@ public:
 	friend class GrammarUnits;
 	friend class SentenceManager;
 	friend class SimpleSentence;
-	friend class Syntax;
+	friend class SyntaxAnalyzer;
 	friend class VLemmatizer;
 };
 

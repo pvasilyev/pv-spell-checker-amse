@@ -1,4 +1,4 @@
-default: clean program
+default: program
 
 clean:
 	rm -f *.o program
