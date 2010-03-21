@@ -13,7 +13,7 @@ class WordDescription;
 class ComplexSentence {
 
 public:
-	ComplexSentence(std::vector<SourceSentenceUnit> &ssu);
+	ComplexSentence(const std::vector<SourceSentenceUnit> &ssu);
 
 	void parse_cs();
 	void print_cs(std::ostream &os);
@@ -22,7 +22,7 @@ private:
 	std::vector<SimpleSentence> myVectorSimpleSentence;
 	//SentenceManager *mySentenceManager;
 
-	std::vector<SourceSentenceUnit> mySSU_CS;
+	const std::vector<SourceSentenceUnit> mySourceSentenceUnit_ComplexSentence;
 };
 
-#endif // _COMPLEX_SENTENCE_H_
+#endif

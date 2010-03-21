@@ -38,75 +38,75 @@ public:
 	};
 
 	enum Grammem {
-		PLURAL = 0,
-		SINGULAR = 1,
+		PLURAL = (u_int64_t)1 << 0,
+		SINGULAR = (u_int64_t)1 << 1,
 
-		NOMINATIV = 2,
-		GENITIV = 3,
-		DATIV = 4,
-		ACCUSATIV = 5,
-		INSTRUMENTALIS = 6,
-		LOCATIV = 7,
-		VOCATIV = 8,
+		NOMINATIV = (u_int64_t)1 << 2,
+		GENITIV = (u_int64_t)1 << 3,
+		DATIV = (u_int64_t)1 << 4,
+		ACCUSATIV = (u_int64_t)1 << 5,
+		INSTRUMENTALIS = (u_int64_t)1 << 6,
+		LOCATIV = (u_int64_t)1 << 7,
+		VOCATIV = (u_int64_t)1 << 8,
 
-		MASCULINUM = 9,
-		FEMINUM = 10,
-		NEUTRUM = 11,
-		MASCFEM = 12,
+		MASCULINUM = (u_int64_t)1 << 9,
+		FEMINUM = (u_int64_t)1 << 10,
+		NEUTRUM = (u_int64_t)1 << 11,
+		MASCFEM = (u_int64_t)1 << 12,
 
-		SHORTFORM = 13,
+		SHORTFORM = (u_int64_t)1 << 13,
 
-		PRESENTTENSE = 14,
-		FUTURETENSE = 15,
-		PASTTENSE = 16,
+		PRESENTTENSE = (u_int64_t)1 << 14,
+		FUTURETENSE = (u_int64_t)1 << 15,
+		PASTTENSE = (u_int64_t)1 << 16,
 
-		FIRSTPERSON = 17,
-		SECONDPERSON = 18,
-		THIRDPERSON = 19,
+		FIRSTPERSON = (u_int64_t)1 << 17,
+		SECONDPERSON = (u_int64_t)1 << 18,
+		THIRDPERSON = (u_int64_t)1 << 19,
 
-		IMPERATIV = 20,
+		IMPERATIV = (u_int64_t)1 << 20,
 
-		ANIMATIVE = 21,
-		NONANIMATIV = 22,
+		ANIMATIVE = (u_int64_t)1 << 21,
+		NONANIMATIV = (u_int64_t)1 << 22,
 
-		COMPARATIVE = 23,
+		COMPARATIVE = (u_int64_t)1 << 23,
 
-		PERFECTIVE = 24,
-		NONPERFECTIVE = 25,
+		PERFECTIVE = (u_int64_t)1 << 24,
+		NONPERFECTIVE = (u_int64_t)1 << 25,
 
-		NONTRANSITIVE = 26,
-		TRANSITIVE = 27,
+		NONTRANSITIVE = (u_int64_t)1 << 26,
+		TRANSITIVE = (u_int64_t)1 << 27,
 
-		ACTIVEVOICE = 28,
-		PASSIVEVOICE = 29,
+		ACTIVEVOICE = (u_int64_t)1 << 28,
+		PASSIVEVOICE = (u_int64_t)1 << 29,
 
-		INDECLINABLE = 30,
-		INITIALISM = 31,
+		INDECLINABLE = (u_int64_t)1 << 30,
+		INITIALISM = (u_int64_t)1 << 31,
 
-		PATRONOMIC = 32,
+		PATRONOMIC = (u_int64_t)1 << 32,
 
-		TOPONYM = 33,
-		ORGANISATION = 34,
+		TOPONYM = (u_int64_t)1 << 33,
+		ORGANISATION = (u_int64_t)1 << 34,
 
-		QUALITATIVE = 35,
-		DEFACTOSINGTANTUM = 36,
+		QUALITATIVE = (u_int64_t)1 << 35,
+		DEFACTOSINGTANTUM = (u_int64_t)1 << 36,
 
-		INTERROGATIVE = 37,
-		DEMONSTRATIVE = 38,
+		INTERROGATIVE = (u_int64_t)1 << 37,
+		DEMONSTRATIVE = (u_int64_t)1 << 38,
 
-		NAME = 39,
-		SURNAME = 40,
-		IMPERSONAL = 41,
-		SLANG = 42,
-		MISPRINT = 43,
-		COLLOQUIAL = 44,
-		POSSESIVE = 45,
-		ARCHAISM = 46,
-		SECONDCASE = 47,
-		POETRY = 48,
-		PROFESSION = 49,
-		SUPERLATIVE = 50,
-		POSITIVE = 51
+		NAME = (u_int64_t)1 << 39,
+		SURNAME = (u_int64_t)1 << 40,
+		IMPERSONAL = (u_int64_t)1 << 41,
+		SLANG = (u_int64_t)1 << 42,
+		MISPRINT = (u_int64_t)1 << 43,
+		COLLOQUIAL = (u_int64_t)1 << 44,
+		POSSESIVE = (u_int64_t)1 << 45,
+		ARCHAISM = (u_int64_t)1 << 46,
+		SECONDCASE = (u_int64_t)1 << 47,
+		POETRY = (u_int64_t)1 << 48,
+		PROFESSION = (u_int64_t)1 << 49,
+		SUPERLATIVE = (u_int64_t)1 << 50,
+		POSITIVE = (u_int64_t)1 << 51
 	};
 
 private:

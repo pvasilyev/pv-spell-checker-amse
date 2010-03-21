@@ -7,14 +7,14 @@
 #include "SimpleSentence.h"
 #include "VLemmatizer.h"
 
-SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
+SyntaxAnalyzer::SyntaxAnalyzer(const std::string &sentence) {
 
 
 // parse words and symbols like ','
 // get vector of mySentenceUnit: symbol or word
 
 	std::string temp;
-	for (std::string::iterator it = sentence.begin(); it != sentence.end(); ++it) {
+	for (std::string::const_iterator it = sentence.begin(); it != sentence.end(); ++it) {
 		if (temp.empty()) {
 			if ((*it) == '"' || (*it) == '\'' || (*it) == '-') {
 				temp.push_back(*it);
@@ -32,6 +32,8 @@ SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
 			}
 			else {
 				static const std::string specialChars = ",:;-\"'!?.";
+				// не забыть про троеточие!!!
+				// refactoring...
 				if (specialChars.find(*it) != std::string::npos) {
 					mySentenceUnit.push_back(temp);
 					temp.clear();
@@ -44,6 +46,7 @@ SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
 				}
 			}
 		}
+
 	}
 	if (!temp.empty()) mySentenceUnit.push_back(temp);
 
@@ -52,34 +55,36 @@ SyntaxAnalyzer::SyntaxAnalyzer(std::string &sentence) {
 
 	VLemmatizer lem;
 
-	for (std::vector<std::string>::iterator it = mySentenceUnit.begin(); it != mySentenceUnit.end(); ++it) {
+	for (std::vector<std::string>::const_iterator it = mySentenceUnit.begin(); it != mySentenceUnit.end(); ++it) {
 		SourceSentenceUnit tmp;
 		if (isWord(*it)) {
 			std::vector<WordDescription> result = lem.lemmatize(*it);
-			tmp.isWord = true;
-			tmp.myWD = result;
+			tmp.myIsWord = true;
+			tmp.myVectorWordDescription = result;
 			tmp.myText = (*it);
 		}
 		else {
 			std::vector<WordDescription> result;
-			tmp.isWord = false;
-			tmp.myWD = result;
+			tmp.myIsWord = false;
+			tmp.myVectorWordDescription = result;
 			tmp.myText = (*it);
 		}
-//std::cerr << "!";
-		mySSUnits.push_back(tmp);
-//std::cerr << "!";
+		myVectorSourceSentenceUnit.push_back(tmp);
 	}
 
-	ComplexSentence *p = new ComplexSentence(mySSUnits);
-	myComplexSentence = p;
+	myComplexSentence = new ComplexSentence(myVectorSourceSentenceUnit);
+/*	for (std::vector<SourceSentenceUnit>::const_iterator it = myVectorSourceSentenceUnit.begin(); it != myVectorSourceSentenceUnit.end(); ++it) {
+		std::cerr << (it)->myText << " ";
+	}
+	std::cerr << std::endl;
+*/
 }
 
 SyntaxAnalyzer::~SyntaxAnalyzer() {
 	delete myComplexSentence;
 }
 
-bool SyntaxAnalyzer::isWord(std::string &string) const {
+bool SyntaxAnalyzer::isWord(const std::string &string) const {
 	return
 		string.find(',') == std::string::npos &&
 		string.find(':') == std::string::npos &&
@@ -94,20 +99,8 @@ bool SyntaxAnalyzer::isWord(std::string &string) const {
 
 void SyntaxAnalyzer::print(std::ostream &os) {
 	myComplexSentence->print_cs(os);
-//	os << sent << "\n" << "\n";
-//	os << "Варианты подлежащего:" << "\n";
-//	for (std::vector<std::string>::iterator it = myObject.begin(); it != myObject.end(); ++it) {
-//		os << (*it) << "\n";
-//	}
-//	os << "Варианты сказуемого:" << "\n";
-//	for (std::vector<std::string>::iterator it = myPredicate.begin(); it != myPredicate.end(); ++it) {
-//		os << (*it) << "\n";
-//	}
-//	os << "\n";
 }
 
 void SyntaxAnalyzer::parse() {
-// разбор
 	myComplexSentence->parse_cs();
-
 }
