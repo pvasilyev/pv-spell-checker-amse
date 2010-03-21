@@ -18,19 +18,21 @@ public:
 	SimpleSentence(const SimpleSentence &ss);
 	~SimpleSentence();
 
+	SimpleSentence& operator = (const SimpleSentence &ss);
+
 	void parse_ss();
-	void print_ss(std::ostream &os);
+	void print_ss(std::ostream &os) const;
 
 private:
-	//GrammarUnits *myGrammarUnits;
+	GrammarFrame *myGrammarFrame;
 
-	std::vector<std::vector<WordDescription>::iterator> myObject;
-	std::vector<std::vector<SourceSentenceUnit>::iterator> myObjectText;
-	std::vector<std::vector<WordDescription>::iterator> myPredicate;
-	std::vector<std::vector<SourceSentenceUnit>::iterator> myPredicateText;
+	std::vector<std::vector<WordDescription>::const_iterator> myObject;
+	std::vector<std::vector<SourceSentenceUnit>::const_iterator> myObjectText;
+	std::vector<std::vector<WordDescription>::const_iterator> myPredicate;
+	std::vector<std::vector<SourceSentenceUnit>::const_iterator> myPredicateText;
 
-	std::vector<SourceSentenceUnit> mySSU_SS;
+	std::vector<SourceSentenceUnit> mySourceSentenceUnit_SimpleSentence;
 
 };
 
-#endif // _SIMPLE_SENTENCE_H_
+#endif 

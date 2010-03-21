@@ -10,36 +10,28 @@ class GrammarUnits;
 class SimpleSentence;
 class WordDescription;
 
-
 class SourceSentenceUnit {
 
 public:
-//	SourceSentenceUnit();
-//	SourceSentenceUnit(const SourceSentenceUnit &);
-//	~SourceSentenceUnit();
-
-	std::vector<WordDescription> myWD;
+	std::vector<WordDescription> myVectorWordDescription;
 	std::string myText;
-	bool isWord;
+	bool myIsWord;
 
 };
-
 
 
 class SyntaxAnalyzer {
 
 public:
-        explicit SyntaxAnalyzer(const std::string &sentence);
+	explicit SyntaxAnalyzer(const std::string &sentence);
         ~SyntaxAnalyzer();
 
-        void parse();
+	void parse();
         void print(std::ostream &os);
 
 private:
         std::vector<std::string> mySentenceUnit;
-
-        std::vector<SourceSentenceUnit> mySSUnits;     // исходные "сырые" данные
-
+        std::vector<SourceSentenceUnit> myVectorSourceSentenceUnit;     // исходные "сырые" данные
         ComplexSentence *myComplexSentence;
 
 private:
@@ -47,21 +39,4 @@ private:
 
 };
 
-
-class SentencePartName {
-
-public:
-        enum SP {
-                SUBJECT = 0,            //подлежащее
-                PREDICATE = 1,          //сказуемое
-                OBJECTIVECOMPONENT = 2, //дополнение
-                ADVERBIAL = 3,          //обстоятельство
-                DEFINITION = 4,         //определение
-                PARTICIPIAL = 5,        //деепричастный/причастный оборот
-        };
-
-        friend class SyntaxAnalyzer;
-
-};
-
-#endif //_SYNTAX_ANALYZER_H_
+#endif
