@@ -37,7 +37,6 @@ SimpleSentence& SimpleSentence::operator = (const SimpleSentence &ss) {
 void SimpleSentence::parse_ss() {
 /*
 	GrammarFrame frame(mySourceSentenceUnit_SimpleSentence);
-
 	frame.buildGrammarFrame();
 	myObject = frame.getObject();
 	myPredicate = frame.getPredicate();
@@ -59,11 +58,8 @@ void SimpleSentence::print_ss(std::ostream &os) const {
 	}
 	os << "Варианты сказуемого:" << "\n";
 	for (std::vector<std::vector<SourceSentenceUnit>::const_iterator>::const_iterator it = myPredicateText.begin(); it != myPredicateText.end(); ++it) {
-	//	std::cerr << "!";
 		os << (*it)->myText << "\n";
-	//	std::cerr << "!";
 	}
-	//std::cerr << "\n";
 	os << "\n";
 
 }
