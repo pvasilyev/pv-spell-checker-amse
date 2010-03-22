@@ -32,8 +32,6 @@ SyntaxAnalyzer::SyntaxAnalyzer(const std::string &sentence) {
 			}
 			else {
 				static const std::string specialChars = ",:;-\"'!?.";
-				// не забыть про троеточие!!!
-				// refactoring...
 				if (specialChars.find(*it) != std::string::npos) {
 					mySentenceUnit.push_back(temp);
 					temp.clear();
