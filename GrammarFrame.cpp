@@ -14,7 +14,7 @@ void GrammarFrame::buildGrammarFrame() {
 		jt != (it->myVectorWordDescription).end(); ++jt) {
 			// существительное + именительный падеж -- кандидат на подлежащее
 			if ((*jt).myPartOfSpeech == WordDescription::NOUN &&
-			((*jt).myGrammem & (u_int64_t)WordDescription::NOMINATIV)) {
+			(jt->hasGrammem(WordDescription::NOMINATIV))) {
 				bool b = true;
 				if (it != mySentenceUnits.begin()) {
 					--it;
@@ -64,43 +64,23 @@ void GrammarFrame::buildGrammarFrame() {
 		}
 	}
 	// проверка согласованности сказуемых
-	PredicateCoordinationCount pcc;
 
+	myPredicatesInCoordination = true;
+	const WordDescription &first;
 	for (std::vector<WordDescription>::const_iterator it = myPredicate.begin();
-	it != myPredicate.end(); ++it) {
-		if (it->myGrammem & (u_int64_t)WordDescription::PLURAL) {
-			++pcc.myPlural;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::SINGULAR) {
-			++pcc.mySingular;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::MASCULINUM) {
-			++pcc.myMasculinum;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::FEMINUM) {
-			++pcc.myFeminum;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::NEUTRUM) {
-			++pcc.myNeutrum;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::PASTTENSE) {
-			++pcc.myPast;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::PRESENTTENSE) {
-			++pcc.myPresent;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::FUTURETENSE) {
-			++pcc.myFuture;
+	     it != myPredicate.end(); ++it) {
+		if (!it->areCoordinated(first, WordDescription::PLURAL) ||
+		    !it->areCoordinated(first, WordDescription::SINGULAR) ||
+		    !it->areCoordinated(first, WordDescription::MASCULINUM) ||
+		    !it->areCoordinated(first, WordDescription::FEMINUM) ||
+		    !it->areCoordinated(first, WordDescription::NEUTRUM) ||
+		    !it->areCoordinated(first, WordDescription::PASTTENSE) ||
+		    !it->areCoordinated(first, WordDescription::PRESENTTENSE) ||
+		    !it->areCoordinated(first, WordDescription::FUTURETENSE)) {
+			myPredicatesInCoordination = false;
+			break;
 		}
 	}
-	myPredicatesInCoordination = ((pcc.myPlural == 0 || pcc.myPlural == (int)myPredicate.size()) &&
-				(pcc.mySingular == 0 || pcc.mySingular == (int)myPredicate.size()) &&
-				(pcc.myMasculinum == 0 || pcc.myMasculinum == (int)myPredicate.size()) &&
-				(pcc.myFeminum == 0 || pcc.myFeminum == (int)myPredicate.size()) &&
-				(pcc.myNeutrum == 0 || pcc.myNeutrum == (int)myPredicate.size()) &&
-				(pcc.myPast == 0 || pcc.myPast == (int)myPredicate.size()) &&
-				(pcc.myPresent == 0 || pcc.myPresent == (int)myPredicate.size()) &&
-				(pcc.myFuture == 0 || pcc.myFuture == (int)myPredicate.size()));
 
 	// проверка согласованности подлежащих
 	SubjectCoordinationCount scc;
@@ -176,7 +156,7 @@ void GrammarFrame::buildGrammarFrame() {
 	if (!mySubjectsInCoordination && !myPredicatesInCoordination) {
 		// NP-hard problem :)
 	}
-
+	*/
 }
 
 std::vector<WordDescription> GrammarFrame::getSubject() const {
