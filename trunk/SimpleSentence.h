@@ -25,12 +25,12 @@ public:
 private:
 	GrammarFrame *myGrammarFrame;
 
-	std::vector<WordDescription> myObject;
-	std::vector<SentenceUnit> myObjectText;
+	std::vector<WordDescription> mySubject;
+	std::vector<SentenceUnit> mySubjectText;
 	std::vector<WordDescription> myPredicate;
 	std::vector<SentenceUnit> myPredicateText;
 
-	std::vector<SentenceUnit> mySentenceUnit;
+	std::vector<SentenceUnit> mySentenceUnits;
 
 };
 

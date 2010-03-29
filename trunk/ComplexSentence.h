@@ -16,12 +16,12 @@ public:
 	ComplexSentence(const std::vector<SentenceUnit> &ssu);
 
 	void parse_cs();
-	void print_cs(std::ostream &os);
+	void print_cs(std::ostream &os) const;
 
 private:
 	std::vector<SimpleSentence> myVectorSimpleSentence;
 
-	const std::vector<SentenceUnit> mySentenceUnit;
+	const std::vector<SentenceUnit> mySentenceUnits;
 };
 
 #endif
