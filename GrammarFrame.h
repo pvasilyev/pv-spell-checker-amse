@@ -13,19 +13,51 @@ public:
 
 	void buildGrammarFrame();
 
-	std::vector<WordDescription> getObject() const;
-	std::vector<SentenceUnit> getObjectText() const;
+	std::vector<WordDescription> getSubject() const;
+	std::vector<SentenceUnit> getSubjectText() const;
 	std::vector<WordDescription> getPredicate() const;
 	std::vector<SentenceUnit> getPredicateText() const;
 
 private:
 
-	const std::vector<SentenceUnit> mySentenceUnit;
+	bool myPredicatesInCoordination;
+	bool mySubjectsInCoordination;
 
-	std::vector<WordDescription> myObject;
-	std::vector<SentenceUnit> myObjectText;
+	const std::vector<SentenceUnit> mySentenceUnits;
+
+	std::vector<WordDescription> mySubject;
+	std::vector<SentenceUnit> mySubjectText;
 	std::vector<WordDescription> myPredicate;
 	std::vector<SentenceUnit> myPredicateText;
+
+};
+
+class PredicateCoordinationCount {
+
+public:
+	PredicateCoordinationCount();
+	int mySingular;
+	int myPlural;
+	int myPast;
+	int myPresent;
+	int myFuture;
+	int myFeminum;
+	int myMasculinum;
+	int myNeutrum;
+
+};
+
+class SubjectCoordinationCount {
+
+public:
+	SubjectCoordinationCount();
+	int mySingular;
+	int myPlural;
+	int myFeminum;
+	int myMasculinum;
+	int myNeutrum;
+	int myNoun;
+	int myPronoun;
 
 };
 
