@@ -3,29 +3,29 @@
 
 #include <vector>
 
-class SourceSentenceUnit;
+class SentenceUnit;
 class WordDescription;
 
 class GrammarFrame {
 
 public:
-	GrammarFrame(const std::vector<SourceSentenceUnit> &ssu);
+	GrammarFrame(const std::vector<SentenceUnit> &su);
 
 	void buildGrammarFrame();
 
-	std::vector<std::vector<WordDescription>::const_iterator> getObject() const;
-	std::vector<std::vector<SourceSentenceUnit>::const_iterator> getObjectText() const;
-	std::vector<std::vector<WordDescription>::const_iterator> getPredicate() const;
-	std::vector<std::vector<SourceSentenceUnit>::const_iterator> getPredicateText() const;
+	std::vector<WordDescription> getObject() const;
+	std::vector<SentenceUnit> getObjectText() const;
+	std::vector<WordDescription> getPredicate() const;
+	std::vector<SentenceUnit> getPredicateText() const;
 
 private:
 
-	const std::vector<SourceSentenceUnit> mySourceSentenceUnit_GrammarFrame;
+	const std::vector<SentenceUnit> mySentenceUnit;
 
-	std::vector<std::vector<WordDescription>::const_iterator> myObject;
-	std::vector<std::vector<SourceSentenceUnit>::const_iterator> myObjectText;
-	std::vector<std::vector<WordDescription>::const_iterator> myPredicate;
-	std::vector<std::vector<SourceSentenceUnit>::const_iterator> myPredicateText;
+	std::vector<WordDescription> myObject;
+	std::vector<SentenceUnit> myObjectText;
+	std::vector<WordDescription> myPredicate;
+	std::vector<SentenceUnit> myPredicateText;
 
 };
 

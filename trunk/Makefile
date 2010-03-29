@@ -6,19 +6,19 @@ clean:
 VLemmatizer.o: VLemmatizer.cpp VLemmatizer.h
 	g++ -c -Wall VLemmatizer.cpp
 
-SyntaxAnalyzer.o: SyntaxAnalyzer.cpp SyntaxAnalyzer.h
+SyntaxAnalyzer.o: SyntaxAnalyzer.cpp SyntaxAnalyzer.h ComplexSentence.h SimpleSentence.h VLemmatizer.h
 	g++ -c -Wall SyntaxAnalyzer.cpp
 
-GrammarFrame.o: GrammarFrame.cpp GrammarFrame.h
+GrammarFrame.o: GrammarFrame.cpp GrammarFrame.h SyntaxAnalyzer.h VLemmatizer.h
 	g++ -c -Wall GrammarFrame.cpp
 
-GrammarUnits.o: GrammarUnits.cpp GrammarUnits.h
+GrammarUnits.o: GrammarUnits.cpp GrammarUnits.h	
 	g++ -c -Wall GrammarUnits.cpp
 
-SimpleSentence.o: SimpleSentence.cpp SimpleSentence.h
+SimpleSentence.o: SimpleSentence.cpp SimpleSentence.h ComplexSentence.h GrammarFrame.h GrammarUnits.h SyntaxAnalyzer.h VLemmatizer.h
 	g++ -c -Wall SimpleSentence.cpp
 
-ComplexSentence.o: ComplexSentence.cpp ComplexSentence.h
+ComplexSentence.o: ComplexSentence.cpp ComplexSentence.h SentenceManager.h SimpleSentence.h SyntaxAnalyzer.h VLemmatizer.h
 	g++ -c -Wall ComplexSentence.cpp
 
 SentenceManager.o: SentenceManager.cpp SentenceManager.h

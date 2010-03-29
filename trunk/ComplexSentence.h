@@ -6,23 +6,22 @@
 
 class SentenceManager;
 class SimpleSentence;
-class SourceSentenceUnit;
+class SentenceUnit;
 class SyntaxAnalyzer;
 class WordDescription;
 
 class ComplexSentence {
 
 public:
-	ComplexSentence(const std::vector<SourceSentenceUnit> &ssu);
+	ComplexSentence(const std::vector<SentenceUnit> &ssu);
 
 	void parse_cs();
 	void print_cs(std::ostream &os);
 
 private:
 	std::vector<SimpleSentence> myVectorSimpleSentence;
-	//SentenceManager *mySentenceManager;
 
-	const std::vector<SourceSentenceUnit> mySourceSentenceUnit_ComplexSentence;
+	const std::vector<SentenceUnit> mySentenceUnit;
 };
 
 #endif
