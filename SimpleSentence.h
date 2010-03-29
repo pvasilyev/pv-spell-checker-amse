@@ -8,30 +8,29 @@ class ComplexSentence;
 class GrammarFrame;
 class GrammarUnits;
 class SentenceManager;
-class SourceSentenceUnit;
+class SentenceUnit;
 class WordDescription;
 
 class SimpleSentence {
 
 public:
-	SimpleSentence(const std::vector<SourceSentenceUnit> &ssu);
+	SimpleSentence(const std::vector<SentenceUnit> &su);
 	SimpleSentence(const SimpleSentence &ss);
 	~SimpleSentence();
 
 	SimpleSentence& operator = (const SimpleSentence &ss);
 
-	void parse_ss();
 	void print_ss(std::ostream &os) const;
 
 private:
 	GrammarFrame *myGrammarFrame;
 
-	std::vector<std::vector<WordDescription>::const_iterator> myObject;
-	std::vector<std::vector<SourceSentenceUnit>::const_iterator> myObjectText;
-	std::vector<std::vector<WordDescription>::const_iterator> myPredicate;
-	std::vector<std::vector<SourceSentenceUnit>::const_iterator> myPredicateText;
+	std::vector<WordDescription> myObject;
+	std::vector<SentenceUnit> myObjectText;
+	std::vector<WordDescription> myPredicate;
+	std::vector<SentenceUnit> myPredicateText;
 
-	std::vector<SourceSentenceUnit> mySourceSentenceUnit_SimpleSentence;
+	std::vector<SentenceUnit> mySentenceUnit;
 
 };
 

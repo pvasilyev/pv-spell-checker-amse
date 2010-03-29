@@ -10,7 +10,7 @@ class GrammarUnits;
 class SimpleSentence;
 class WordDescription;
 
-class SourceSentenceUnit {
+class SentenceUnit {
 
 public:
 	std::vector<WordDescription> myVectorWordDescription;
@@ -26,12 +26,11 @@ public:
 	explicit SyntaxAnalyzer(const std::string &sentence);
         ~SyntaxAnalyzer();
 
-	void parse();
         void print(std::ostream &os);
 
 private:
-        std::vector<std::string> mySentenceUnit;
-        std::vector<SourceSentenceUnit> myVectorSourceSentenceUnit;     // исходные "сырые" данные
+        std::vector<std::string> mySentenceUnits;
+        std::vector<SentenceUnit> myVectorSentenceUnit;     // исходные "сырые" данные
         ComplexSentence *myComplexSentence;
 
 private:
