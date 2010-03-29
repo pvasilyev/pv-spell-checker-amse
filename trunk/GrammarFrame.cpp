@@ -137,6 +137,46 @@ void GrammarFrame::buildGrammarFrame() {
 				(scc.myNoun == 0 || scc.myNoun == (int)mySubject.size()) &&
 				(scc.myPronoun == 0 || scc.myPronoun == (int)mySubject.size()));
 
+	if (mySubjectsInCoordination && !myPredicatesInCoordination) {
+		// фильтр по числу
+		bool plural = (scc.mySingular == 0);
+		for (std::vector<WordDescription>::iterator it = myPredicate.begin();
+		it != myPredicate.end(); ++it) {
+			
+		}
+		// фильтр по роду
+		int gender;
+		if (scc.myMasculinum != 0) {
+			gender = 0;
+		} else
+		if (scc.myFeminum != 0) {
+			gender = 1;
+		} else
+		if (scc.myNeutrum != 0) {
+			gender = 2;
+		}
+		for (std::vector<WordDescription>::iterator it = myPredicate.begin();
+		it != myPredicate.end(); ++it) {
+			
+		}
+	} else
+	if (!mySubjectsInCoordination && myPredicatesInCoordination) {
+		// фильтр по числу
+		for (std::vector<WordDescription>::iterator it = mySubject.begin();
+		it != myPredicate.end(); ++it) {
+			
+		}
+
+		// фильтр по роду
+		for (std::vector<WordDescription>::iterator it = mySubject.begin();
+		it != myPredicate.end(); ++it) {
+			
+		}
+	} else
+	if (!mySubjectsInCoordination && !myPredicatesInCoordination) {
+		// NP-hard problem :)
+	}
+
 }
 
 std::vector<WordDescription> GrammarFrame::getSubject() const {
