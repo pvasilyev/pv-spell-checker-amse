@@ -56,6 +56,10 @@ WordDescription::PartOfSpeech &WordDescription::getPartOfSpeech() {
 	return myPartOfSpeech;
 }
 
+bool WordDescription::hasPart(PartOfSpeech pos) const {
+	return (myPartOfSpeech == pos);
+}
+
 bool WordDescription::hasGrammem(Grammem grammem) const {
 	return (myGrammem & (((u_int64_t)1) << grammem)) != 0;
 }

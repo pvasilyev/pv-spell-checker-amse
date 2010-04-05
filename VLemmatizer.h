@@ -111,10 +111,11 @@ public:
 
 public:
 	bool hasGrammem(Grammem grammem) const;	
+	bool hasPart(PartOfSpeech pos) const;
 	bool areCoordinatedGrammem(const WordDescription &wd, Grammem grammem) const;
 	bool areCoordinatedPart(const WordDescription &wd, PartOfSpeech pos) const;
 
-public:
+private:
 	WordDescription::PartOfSpeech myPartOfSpeech;
 	std::vector<WordDescription::Grammem> myGrammems;
 	u_int64_t myGrammem;
@@ -122,6 +123,8 @@ public:
 	WordDescription(PartOfSpeech partOfSpeech, u_int64_t iGr);
 
 public:
+	friend class VLemmatizer;
+
 	WordDescription::PartOfSpeech &getPartOfSpeech();
 	std::vector<Grammem> &getGrammems();
 
@@ -149,4 +152,4 @@ public:
 	std::vector<WordDescription> lemmatize(const std::string &word) const;
 };
 
-#endif //_VASILIEV_LEMMATIZER_H_
+#endif
