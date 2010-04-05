@@ -111,9 +111,10 @@ public:
 
 public:
 	bool hasGrammem(Grammem grammem) const;	
-	bool areCoordinated(const WordDescription &wd, Grammem grammem) const;
+	bool areCoordinatedGrammem(const WordDescription &wd, Grammem grammem) const;
+	bool areCoordinatedPart(const WordDescription &wd, PartOfSpeech pos) const;
 
-private:
+public:
 	WordDescription::PartOfSpeech myPartOfSpeech;
 	std::vector<WordDescription::Grammem> myGrammems;
 	u_int64_t myGrammem;
@@ -128,13 +129,7 @@ public:
 	void printGrammems(std::ostream &os);
 };
 
-inline bool WordDescription::hasGrammem(Grammem grammem) const {
-	return (myGrammem & (((u_int64_t)1) << grammem)) != 0;
-}
 
-inline bool WordDescription::areCoordinated(const WordDescription &wd, Grammem grammem) const {
-	return hasGrammem(grammem) == wd.hasGrammem(grammem);
-}
 
 class VLemmatizer{
 

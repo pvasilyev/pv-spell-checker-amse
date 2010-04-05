@@ -63,102 +63,84 @@ void GrammarFrame::buildGrammarFrame() {
 			}
 		}
 	}
-	// проверка согласованности сказуемых
 
-	myPredicatesInCoordination = true;
-	const WordDescription &first;
-	for (std::vector<WordDescription>::const_iterator it = myPredicate.begin();
-	     it != myPredicate.end(); ++it) {
-		if (!it->areCoordinated(first, WordDescription::PLURAL) ||
-		    !it->areCoordinated(first, WordDescription::SINGULAR) ||
-		    !it->areCoordinated(first, WordDescription::MASCULINUM) ||
-		    !it->areCoordinated(first, WordDescription::FEMINUM) ||
-		    !it->areCoordinated(first, WordDescription::NEUTRUM) ||
-		    !it->areCoordinated(first, WordDescription::PASTTENSE) ||
-		    !it->areCoordinated(first, WordDescription::PRESENTTENSE) ||
-		    !it->areCoordinated(first, WordDescription::FUTURETENSE)) {
-			myPredicatesInCoordination = false;
-			break;
-		}
-	}
-
-	// проверка согласованности подлежащих
-	SubjectCoordinationCount scc;
-
-	for (std::vector<WordDescription>::const_iterator it = mySubject.begin();
-	it != mySubject.end(); ++it) {
-		if (it->myGrammem & (u_int64_t)WordDescription::PLURAL) {
-			++scc.myPlural;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::SINGULAR) {
-			++scc.mySingular;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::MASCULINUM) {
-			++scc.myMasculinum;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::FEMINUM) {
-			++scc.myFeminum;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::NEUTRUM) {
-			++scc.myNeutrum;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::NOUN) {
-			++scc.myNoun;
-		}
-		if (it->myGrammem & (u_int64_t)WordDescription::PRONOUN) {
-			++scc.myPronoun;
-		}
-	}
-	mySubjectsInCoordination = ((scc.myPlural == 0 || scc.myPlural == (int)mySubject.size()) &&
-				(scc.mySingular == 0 || scc.mySingular == (int)mySubject.size()) &&
-				(scc.myMasculinum == 0 || scc.myMasculinum == (int)mySubject.size()) &&
-				(scc.myFeminum == 0 || scc.myFeminum == (int)mySubject.size()) &&
-				(scc.myNeutrum == 0 || scc.myNeutrum == (int)mySubject.size()) &&
-				(scc.myNoun == 0 || scc.myNoun == (int)mySubject.size()) &&
-				(scc.myPronoun == 0 || scc.myPronoun == (int)mySubject.size()));
-
-	if (mySubjectsInCoordination && !myPredicatesInCoordination) {
-		// фильтр по числу
-		bool plural = (scc.mySingular == 0);
-		for (std::vector<WordDescription>::iterator it = myPredicate.begin();
-		it != myPredicate.end(); ++it) {
-			
-		}
-		// фильтр по роду
-		int gender;
-		if (scc.myMasculinum != 0) {
-			gender = 0;
-		} else
-		if (scc.myFeminum != 0) {
-			gender = 1;
-		} else
-		if (scc.myNeutrum != 0) {
-			gender = 2;
-		}
-		for (std::vector<WordDescription>::iterator it = myPredicate.begin();
-		it != myPredicate.end(); ++it) {
-			
-		}
-	} else
-	if (!mySubjectsInCoordination && myPredicatesInCoordination) {
-		// фильтр по числу
-		for (std::vector<WordDescription>::iterator it = mySubject.begin();
-		it != myPredicate.end(); ++it) {
-			
-		}
-
-		// фильтр по роду
-		for (std::vector<WordDescription>::iterator it = mySubject.begin();
-		it != myPredicate.end(); ++it) {
-			
-		}
-	} else
-	if (!mySubjectsInCoordination && !myPredicatesInCoordination) {
-		// NP-hard problem :)
-	}
-	*/
+	myPredicatesInCoordination = checkPredicateCoordination();
+	mySubjectsInCoordination = checkSubjectCoordination();
+	doFiltration(mySubjectsInCoordination, myPredicatesInCoordination);
 }
 
+bool GrammarFrame::checkPredicateCoordination() const {
+	if (!myPredicate.empty()) {
+		const WordDescription &firstPredicate = (myPredicate.at(0));
+		for (std::vector<WordDescription>::const_iterator it = myPredicate.begin();
+		     it != myPredicate.end(); ++it) {
+			if (!it->areCoordinatedGrammem(firstPredicate, WordDescription::PLURAL) ||
+			    !it->areCoordinatedGrammem(firstPredicate, WordDescription::SINGULAR) ||
+			    !it->areCoordinatedGrammem(firstPredicate, WordDescription::MASCULINUM) ||
+			    !it->areCoordinatedGrammem(firstPredicate, WordDescription::FEMINUM) ||
+			    !it->areCoordinatedGrammem(firstPredicate, WordDescription::NEUTRUM) ||
+			    !it->areCoordinatedGrammem(firstPredicate, WordDescription::PASTTENSE) ||
+			    !it->areCoordinatedGrammem(firstPredicate, WordDescription::PRESENTTENSE) ||
+			    !it->areCoordinatedGrammem(firstPredicate, WordDescription::FUTURETENSE)) {
+				return false;
+				break;
+			}
+		}
+	}
+	return true;
+}
+ 
+bool GrammarFrame::checkSubjectCoordination() const {
+	if (!mySubject.empty()) {
+		const WordDescription &firstSubject = (mySubject.at(0));
+		for (std::vector<WordDescription>::const_iterator it = mySubject.begin();
+		     it != mySubject.end(); ++it) {
+			if (!it->areCoordinatedGrammem(firstSubject, WordDescription::PLURAL) ||
+			    !it->areCoordinatedGrammem(firstSubject, WordDescription::SINGULAR) ||
+			    !it->areCoordinatedGrammem(firstSubject, WordDescription::MASCULINUM) ||
+			    !it->areCoordinatedGrammem(firstSubject, WordDescription::FEMINUM) ||
+			    !it->areCoordinatedGrammem(firstSubject, WordDescription::NEUTRUM) ||
+			    !it->areCoordinatedPart(firstSubject, WordDescription::NOUN) ||
+			    !it->areCoordinatedPart(firstSubject, WordDescription::PRONOUN)) {
+				return false;
+				break;
+			}
+		}
+	}
+	return true;
+}
+
+void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCoordination) {
+	if (subjectsInCoordination && !predicatesInCoordination) {
+		// фильтр по числу
+		for (std::vector<WordDescription>::iterator it = myPredicate.begin();
+		it != myPredicate.end(); ++it) {
+			
+		}
+		// фильтр по роду
+		for (std::vector<WordDescription>::iterator it = myPredicate.begin();
+		it != myPredicate.end(); ++it) {
+			
+		}
+	} else
+	if (!subjectsInCoordination && predicatesInCoordination) {
+		// фильтр по числу
+		for (std::vector<WordDescription>::iterator it = mySubject.begin();
+		it != mySubject.end(); ++it) {
+			
+		}
+
+		// фильтр по роду
+		for (std::vector<WordDescription>::iterator it = mySubject.begin();
+		it != mySubject.end(); ++it) {
+			
+		}
+	} else
+	if (!subjectsInCoordination && !predicatesInCoordination) {
+		// NP-hard problem :)
+	}
+}
+ 
 std::vector<WordDescription> GrammarFrame::getSubject() const {
 	return mySubject;
 }
@@ -175,24 +157,4 @@ std::vector<SentenceUnit> GrammarFrame::getPredicateText() const {
 	return myPredicateText;
 }
 
-PredicateCoordinationCount::PredicateCoordinationCount() {
-	myPlural = 0;
-	mySingular = 0;
-	myMasculinum = 0;
-	myFeminum = 0;
-	myNeutrum = 0;
-	myPast = 0;
-	myPresent = 0;
-	myFuture = 0; 
-}
-
-SubjectCoordinationCount::SubjectCoordinationCount() {
-	myPlural = 0;
-	mySingular = 0;
-	myMasculinum = 0;
-	myFeminum = 0;
-	myNeutrum = 0;
-	myNoun = 0;
-	myPronoun = 0;
-}
 

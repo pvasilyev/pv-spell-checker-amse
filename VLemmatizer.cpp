@@ -56,9 +56,22 @@ WordDescription::PartOfSpeech &WordDescription::getPartOfSpeech() {
 	return myPartOfSpeech;
 }
 
+bool WordDescription::hasGrammem(Grammem grammem) const {
+	return (myGrammem & (((u_int64_t)1) << grammem)) != 0;
+}
+
+bool WordDescription::areCoordinatedGrammem(const WordDescription &wd, Grammem grammem) const {
+	return hasGrammem(grammem) == wd.hasGrammem(grammem);
+}
+
+bool WordDescription::areCoordinatedPart(const WordDescription &wd, PartOfSpeech pos) const {
+	return wd.myPartOfSpeech == pos;
+}
+
 std::vector<WordDescription::Grammem> &WordDescription::getGrammems() {
 	return myGrammems;
 }
+
 
 void WordDescription::printPartOfSpeech(std::ostream &os) {
 	switch (myPartOfSpeech){
