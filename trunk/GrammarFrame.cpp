@@ -13,16 +13,16 @@ void GrammarFrame::buildGrammarFrame() {
 		for (std::vector<WordDescription>::const_iterator jt = (it->myVectorWordDescription).begin();
 		jt != (it->myVectorWordDescription).end(); ++jt) {
 			// существительное + именительный падеж -- кандидат на подлежащее
-			if ((*jt).myPartOfSpeech == WordDescription::NOUN &&
+			if ((jt)->hasPart(WordDescription::NOUN) &&
 			(jt->hasGrammem(WordDescription::NOMINATIV))) {
 				bool b = true;
 				if (it != mySentenceUnits.begin()) {
 					--it;
 					for (std::vector<WordDescription>::const_iterator kt = (it->myVectorWordDescription).begin();
 					kt != (it->myVectorWordDescription).end(); ++kt) {
-						if ((*kt).myPartOfSpeech == WordDescription::PREPOSAL ||
-						((*kt).myPartOfSpeech == WordDescription::ADJECTIVE_FULL &&
-						((*kt).myGrammem & !(u_int64_t)WordDescription::NOMINATIV))) {
+						if ((kt)->hasPart(WordDescription::PREPOSAL) ||
+						((kt)->hasPart(WordDescription::ADJECTIVE_FULL) &&
+						(!(kt)->hasGrammem(WordDescription::NOMINATIV)))) {
 							b = false;
 						}
 					}
@@ -35,16 +35,16 @@ void GrammarFrame::buildGrammarFrame() {
 			}
 
 			// местоимение + именительный падеж -- кандидат на подлежащее
-			if ((*jt).myPartOfSpeech == WordDescription::PRONOUN &&
-			((*jt).myGrammem & (u_int64_t)WordDescription::NOMINATIV)) {
+			if ((jt)->hasPart(WordDescription::PRONOUN) &&
+			((jt)->hasGrammem(WordDescription::NOMINATIV))) {
 				bool b = true;
 				if (it != mySentenceUnits.begin()) {
 					--it;
 					for (std::vector<WordDescription>::const_iterator kt = (it->myVectorWordDescription).begin();
 					kt != (it->myVectorWordDescription).end(); ++kt) {
-						if ((*kt).myPartOfSpeech == WordDescription::PREPOSAL ||
-						((*kt).myPartOfSpeech == WordDescription::ADJECTIVE_FULL &&
-						((*kt).myGrammem & !(u_int64_t)WordDescription::NOMINATIV))) {
+						if ((kt)->hasPart(WordDescription::PREPOSAL) ||
+						((kt)->hasPart(WordDescription::ADJECTIVE_FULL) &&
+						(!(kt)->hasGrammem(WordDescription::NOMINATIV)))) {
 							b = false;
 						}
 					}
@@ -57,7 +57,7 @@ void GrammarFrame::buildGrammarFrame() {
 			}
 
 			// глагол -- кандидат на сказуемое 
-			if ((*jt).myPartOfSpeech == WordDescription::VERB) {
+			if ((jt)->hasPart(WordDescription::VERB)) {
 				myPredicate.push_back(*jt);
 				myPredicateText.push_back(*it);
 			}

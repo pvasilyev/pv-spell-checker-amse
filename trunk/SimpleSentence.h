@@ -4,10 +4,6 @@
 #include <vector>
 #include <ostream>
 
-class ComplexSentence;
-class GrammarFrame;
-class GrammarUnits;
-class SentenceManager;
 class SentenceUnit;
 class WordDescription;
 
@@ -15,15 +11,10 @@ class SimpleSentence {
 
 public:
 	SimpleSentence(const std::vector<SentenceUnit> &su);
-	SimpleSentence(const SimpleSentence &ss);
-	~SimpleSentence();
 
-	SimpleSentence& operator = (const SimpleSentence &ss);
-
-	void print_ss(std::ostream &os) const;
+	void print(std::ostream &os) const;
 
 private:
-	GrammarFrame *myGrammarFrame;
 
 	std::vector<WordDescription> mySubject;
 	std::vector<SentenceUnit> mySubjectText;

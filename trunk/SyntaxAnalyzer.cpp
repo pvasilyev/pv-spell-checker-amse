@@ -91,6 +91,6 @@ bool SyntaxAnalyzer::isWord(const std::string &string) const {
 }
 
 void SyntaxAnalyzer::print(std::ostream &os) {
-	myComplexSentence->print_cs(os);
+	myComplexSentence->print(os);
 }
 

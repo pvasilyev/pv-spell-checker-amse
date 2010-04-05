@@ -4,10 +4,8 @@
 #include <ostream>
 #include <vector>
 
-class SentenceManager;
 class SimpleSentence;
 class SentenceUnit;
-class SyntaxAnalyzer;
 class WordDescription;
 
 class ComplexSentence {
@@ -15,8 +13,7 @@ class ComplexSentence {
 public:
 	ComplexSentence(const std::vector<SentenceUnit> &ssu);
 
-	void parse_cs();
-	void print_cs(std::ostream &os) const;
+	void print(std::ostream &os) const;
 
 private:
 	std::vector<SimpleSentence> myVectorSimpleSentence;

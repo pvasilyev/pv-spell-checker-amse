@@ -6,8 +6,6 @@
 
 class ComplexSentence;
 class GrammarFrame;
-class GrammarUnits;
-class SimpleSentence;
 class WordDescription;
 
 class SentenceUnit {
@@ -29,12 +27,12 @@ public:
         void print(std::ostream &os);
 
 private:
+        bool isWord(const std::string &string) const;
+
+private:
         std::vector<std::string> mySentenceUnits;
         std::vector<SentenceUnit> myVectorSentenceUnit;     // исходные "сырые" данные
         ComplexSentence *myComplexSentence;
-
-private:
-        bool isWord(const std::string &string) const;
 
 };
 

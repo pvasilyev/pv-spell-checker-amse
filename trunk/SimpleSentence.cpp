@@ -10,35 +10,16 @@
 #include "VLemmatizer.h"
 
 SimpleSentence::SimpleSentence(const std::vector<SentenceUnit> &su): mySentenceUnits(su) {
-	myGrammarFrame = new GrammarFrame(su);
-	myGrammarFrame->buildGrammarFrame();
-	mySubject = myGrammarFrame->getSubject();
-	myPredicate = myGrammarFrame->getPredicate();
-	mySubjectText = myGrammarFrame->getSubjectText();
-	myPredicateText = myGrammarFrame->getPredicateText();
+	GrammarFrame frame(su);
+	frame.buildGrammarFrame();
+	mySubject = frame.getSubject();
+	myPredicate = frame.getPredicate();
+	mySubjectText = frame.getSubjectText();
+	myPredicateText = frame.getPredicateText();
 }
 
-SimpleSentence::~SimpleSentence() {
-	delete myGrammarFrame;
-}
-SimpleSentence::SimpleSentence(const SimpleSentence &ss) : mySentenceUnits(ss.mySentenceUnits) {
-	myGrammarFrame = new GrammarFrame(ss.mySentenceUnits);
-	mySubject = ss.mySubject;
-	myPredicate = ss.myPredicate;
-	mySubjectText = ss.mySubjectText;
-	myPredicateText = ss.myPredicateText;
-}
 
-SimpleSentence& SimpleSentence::operator = (const SimpleSentence &ss) {
-	mySentenceUnits= ss.mySentenceUnits;
-	mySubject = ss.mySubject;
-	myPredicate = ss.myPredicate;
-	mySubjectText = ss.mySubjectText;
-	myPredicateText = ss.myPredicateText;
-	return *this;
-}
-
-void SimpleSentence::print_ss(std::ostream &os) const {
+void SimpleSentence::print(std::ostream &os) const {
 	os << "Варианты подлежащего:" << "\n";
 	for (std::vector<SentenceUnit>::const_iterator it = mySubjectText.begin(); it != mySubjectText.end(); ++it) {
 		os << it->myText << "\n";
