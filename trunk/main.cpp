@@ -16,6 +16,7 @@ int main(int argc, char **argv){
 		std::getline(inFile, sentence);
 		if (sentence != "") {
 			SyntaxAnalyzer s(sentence);
+			outFile << sentence << std::endl;
 			s.print(outFile);
 		}
 	}
