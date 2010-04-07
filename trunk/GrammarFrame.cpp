@@ -30,30 +30,8 @@ void GrammarFrame::buildGrammarFrame() {
 void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
 				std::vector<WordDescription>::const_iterator jt) {
 			// существительное + именительный падеж -- кандидат на подлежащее
-			if (jt->hasPart(WordDescription::NOUN) &&
+			if ((jt->hasPart(WordDescription::NOUN) || jt->hasPart(WordDescription::PRONOUN) ) &&
 			(jt->hasGrammem(WordDescription::NOMINATIV))) {
-				bool b = true;
-				if (it != mySentenceUnits.begin()) {
-					--it;
-					for (std::vector<WordDescription>::const_iterator kt = (it->myVectorWordDescription).begin();
-					kt != (it->myVectorWordDescription).end(); ++kt) {
-						if ((kt)->hasPart(WordDescription::PREPOSAL) ||
-						((kt)->hasPart(WordDescription::ADJECTIVE_FULL) &&
-						(!(kt)->hasGrammem(WordDescription::NOMINATIV)))) {
-							b = false;
-						}
-					}
-					++it;
-				}
-				if (b) {
-					mySubject.push_back(*jt);
-					mySubjectText.push_back(*it);
-				}
-			}
-
-			// местоимение + именительный падеж -- кандидат на подлежащее
-			if ((jt)->hasPart(WordDescription::PRONOUN) &&
-			((jt)->hasGrammem(WordDescription::NOMINATIV))) {
 				bool b = true;
 				if (it != mySentenceUnits.begin()) {
 					--it;
