@@ -12,8 +12,25 @@ void GrammarFrame::buildGrammarFrame() {
 	it != (mySentenceUnits).end(); ++it ) {
 		for (std::vector<WordDescription>::const_iterator jt = (it->myVectorWordDescription).begin();
 		jt != (it->myVectorWordDescription).end(); ++jt) {
+			tryToAddSubject(it, jt);
+
+			// глагол -- кандидат на сказуемое 
+			if ((jt)->hasPart(WordDescription::VERB)) {
+				myPredicate.push_back(*jt);
+				myPredicateText.push_back(*it);
+			}
+		}
+	}
+
+	myPredicatesInCoordination = checkPredicateCoordination();
+	mySubjectsInCoordination = checkSubjectCoordination();
+	doFiltration(mySubjectsInCoordination, myPredicatesInCoordination);
+}
+
+void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
+				std::vector<WordDescription>::const_iterator jt) {
 			// существительное + именительный падеж -- кандидат на подлежащее
-			if ((jt)->hasPart(WordDescription::NOUN) &&
+			if (jt->hasPart(WordDescription::NOUN) &&
 			(jt->hasGrammem(WordDescription::NOMINATIV))) {
 				bool b = true;
 				if (it != mySentenceUnits.begin()) {
@@ -56,17 +73,6 @@ void GrammarFrame::buildGrammarFrame() {
 				}
 			}
 
-			// глагол -- кандидат на сказуемое 
-			if ((jt)->hasPart(WordDescription::VERB)) {
-				myPredicate.push_back(*jt);
-				myPredicateText.push_back(*it);
-			}
-		}
-	}
-
-	myPredicatesInCoordination = checkPredicateCoordination();
-	mySubjectsInCoordination = checkSubjectCoordination();
-	doFiltration(mySubjectsInCoordination, myPredicatesInCoordination);
 }
 
 bool GrammarFrame::checkPredicateCoordination() const {
