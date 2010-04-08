@@ -11,8 +11,6 @@ class GrammarFrame {
 public:
 	GrammarFrame(const std::vector<SentenceUnit> &su);
 
-	void buildGrammarFrame();
-
 	std::vector<WordDescription> getSubject() const;
 	std::vector<SentenceUnit> getSubjectText() const;
 	std::vector<WordDescription> getPredicate() const;

@@ -11,7 +11,6 @@
 
 SimpleSentence::SimpleSentence(const std::vector<SentenceUnit> &su): mySentenceUnits(su) {
 	GrammarFrame frame(su);
-	frame.buildGrammarFrame();
 	mySubject = frame.getSubject();
 	myPredicate = frame.getPredicate();
 	mySubjectText = frame.getSubjectText();

@@ -5,9 +5,7 @@
 #include "SyntaxAnalyzer.h"
 #include "VLemmatizer.h"
 
-GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits(su) {}
-
-void GrammarFrame::buildGrammarFrame() {
+GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits(su) {
 	for (std::vector<SentenceUnit>::const_iterator it = (mySentenceUnits).begin();
 	it != (mySentenceUnits).end(); ++it ) {
 		for (std::vector<WordDescription>::const_iterator jt = (it->myVectorWordDescription).begin();
