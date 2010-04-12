@@ -5,6 +5,7 @@
 
 class SentenceUnit;
 class WordDescription;
+class SentencePart;
 
 class GrammarFrame {
 
@@ -22,15 +23,14 @@ private:
 	void doFiltration(bool subjectsInCoordination, bool predicatesInCoordination);
 	void tryToAddSubject(std::vector<SentenceUnit>::const_iterator it, std::vector<WordDescription>::const_iterator jt);
 
-	bool myPredicatesInCoordination;
-	bool mySubjectsInCoordination;
-
 	const std::vector<SentenceUnit> mySentenceUnits;
 
 	std::vector<WordDescription> mySubject;
 	std::vector<SentenceUnit> mySubjectText;
+	std::vector<SentencePart> mySubjectSentencePart;
 	std::vector<WordDescription> myPredicate;
 	std::vector<SentenceUnit> myPredicateText;
+	std::vector<SentencePart> myPredicateSentencePart;
 
 };
 
