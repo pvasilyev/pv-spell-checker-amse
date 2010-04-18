@@ -15,7 +15,7 @@ GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits
 			// глагол -- кандидат на сказуемое 
 			if ((jt)->hasPart(WordDescription::VERB)) {
 				SentencePart sp;
-				sp.myWordDescription = *jt;
+				sp.myWordDescription = (*jt);
 				//sp.mySentenceUnit = *it;
 				myPredicateSentencePart.push_back(sp);
 				myPredicate.push_back(*jt);
@@ -36,8 +36,9 @@ void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
 			(jt->hasGrammem(WordDescription::NOMINATIV))) {
 				bool b = true;
 				if (it != mySentenceUnits.begin()) {
-					--it;
-					for (std::vector<WordDescription>::const_iterator kt = (it->myVectorWordDescription).begin();
+					const std::vector<SentenceUnit>::const_iterator previous = it--;
+					for (std::vector<WordDescription>::const_iterator
+					kt = (previous->myVectorWordDescription).begin();
 					kt != (it->myVectorWordDescription).end(); ++kt) {
 						if ((kt)->hasPart(WordDescription::PREPOSAL) ||
 						((kt)->hasPart(WordDescription::ADJECTIVE_FULL) &&
@@ -45,7 +46,6 @@ void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
 							b = false;
 						}
 					}
-					++it;
 				}
 				if (b) {
 					mySubject.push_back(*jt);
