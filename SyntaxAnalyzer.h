@@ -18,9 +18,11 @@ public:
 };
 
 class SentencePart {
+
 public:
 	WordDescription myWordDescription();
 	SentenceUnit mySentenceUnit();
+
 };
 
 class SyntaxAnalyzer {
