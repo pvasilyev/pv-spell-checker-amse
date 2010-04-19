@@ -19,7 +19,7 @@ private:
 	bool checkPredicateCoordination() const;
 	bool checkSubjectCoordination() const;
 	void doFiltration(bool subjectsInCoordination, bool predicatesInCoordination);
-	void tryToAddSubject(std::vector<SentenceUnit>::const_iterator it, std::vector<WordDescription>::const_iterator jt);
+	void tryToAddSubject(std::vector<SentenceUnit>::const_iterator it, const WordDescription &description);
 
 	const std::vector<SentenceUnit> mySentenceUnits;
 
