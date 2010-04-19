@@ -110,6 +110,7 @@ public:
 	};
 
 public:
+	WordDescription();
 	bool hasGrammem(Grammem grammem) const;	
 	bool hasPart(PartOfSpeech pos) const;
 	bool areCoordinatedGrammem(const WordDescription &wd, Grammem grammem) const;
