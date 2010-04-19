@@ -47,10 +47,6 @@ void compareOutAndGold(const std::string &out, const std::string &gold) {
 				bCont = false;
 			}
 		}
-		//else {
-		//	std::cout << "100 \% common!" << "\n";
-		//	bCont = false;
-		//}
 	}
 
 	os.close();
