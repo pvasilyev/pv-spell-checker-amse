@@ -11,7 +11,7 @@ GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits
 		it != mySentenceUnits.end(); ++it ) {
 		for (std::vector<WordDescription>::const_iterator jt = (it->myVectorWordDescription).begin();
 			jt != (it->myVectorWordDescription).end(); ++jt) {
-			tryToAddSubject(it, jt);
+			tryToAddSubject(it, *jt);
 
 			// глагол -- кандидат на сказуемое 
 			if ((jt)->hasPart(WordDescription::VERB)) {
@@ -23,16 +23,16 @@ GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits
 		}
 	}
 
-	bool myPredicatesInCoordination = checkPredicateCoordination();
-	bool mySubjectsInCoordination = checkSubjectCoordination();
-	doFiltration(mySubjectsInCoordination, myPredicatesInCoordination);
+	bool predicatesInCoordination = checkPredicateCoordination();
+	bool subjectsInCoordination = checkSubjectCoordination();
+	doFiltration(subjectsInCoordination, predicatesInCoordination);
 }
-
+//итераторы не для передачи по параметру
 void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
-				std::vector<WordDescription>::const_iterator jt) {
+				const WordDescription &description) {
 			// существительное или местоимение + именительный падеж -- кандидат на подлежащее
-			if ((jt->hasPart(WordDescription::NOUN) || jt->hasPart(WordDescription::PRONOUN)) &&
-				(jt->hasGrammem(WordDescription::NOMINATIV))) {
+			if ((description.hasPart(WordDescription::NOUN) || description.hasPart(WordDescription::PRONOUN)) &&
+				(description.hasGrammem(WordDescription::NOMINATIV))) {
 				bool b = true;
 				if (it != mySentenceUnits.begin()) {
 					const std::vector<SentenceUnit>::const_iterator previous = it - 1;
@@ -48,7 +48,7 @@ void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
 				}
 				if (b) {
 					SentencePart sp;
-					sp.myWordDescription = (*jt);
+					sp.myWordDescription = (description);
 					sp.mySentenceUnit = *it;
 					mySubjectSentencePart.push_back(sp);
 				}
@@ -57,6 +57,7 @@ void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
 }
 
 bool GrammarFrame::checkPredicateCoordination() const {
+// PLURAL etc -- положить в контейнер + сделать метод статическим!
 	if (!myPredicateSentencePart.empty()) {
 		const WordDescription &firstPredicate = (myPredicateSentencePart.at(0)).myWordDescription;
 		for (std::vector<SentencePart>::const_iterator it = myPredicateSentencePart.begin();

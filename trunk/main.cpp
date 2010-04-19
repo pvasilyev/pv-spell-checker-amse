@@ -16,7 +16,7 @@ public:
 	std::string outFile;
 	std::string goldFile;
 
-	file(std::string in, std::string out, std::string gold): inFile(in), outFile(out), goldFile(gold) {}
+	file(const std::string &in, const std::string &out, const std::string &gold): inFile(in), outFile(out), goldFile(gold) {}
 
 };
 
@@ -38,13 +38,19 @@ void compareOutAndGold(const std::string &out, const std::string &gold) {
 			bCont = false;
 		}
 		else if (os.eof() || gs.eof()) {
-			std::cout << "Lengths not equal!" << "\n";
-			bCont = false;
+			if (os.eof() && gs.eof()) {
+				std::cout << "100 \% equal!" << "\n";
+				bCont = false;
+			}
+			else {
+				std::cout << "Lengths not equal!" << "\n";
+				bCont = false;
+			}
 		}
-		else {
-			std::cout << "100 \% common!" << "\n";
-			bCont = false;
-		}
+		//else {
+		//	std::cout << "100 \% common!" << "\n";
+		//	bCont = false;
+		//}
 	}
 
 	os.close();
