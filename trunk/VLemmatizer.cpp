@@ -18,6 +18,8 @@ VLemmatizer::~VLemmatizer(){
 	turglem_close(myLem);
 }
 
+WordDescription::WordDescription() {}
+
 WordDescription::WordDescription(WordDescription::PartOfSpeech partOfSpeech, u_int64_t iGr) {
 	myPartOfSpeech = partOfSpeech;
 	myGrammem = iGr;

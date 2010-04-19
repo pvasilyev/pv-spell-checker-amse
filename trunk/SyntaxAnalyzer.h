@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "VLemmatizer.h"
 
 class ComplexSentence;
 class GrammarFrame;
@@ -20,8 +21,8 @@ public:
 class SentencePart {
 
 public:
-	WordDescription myWordDescription();
-	SentenceUnit mySentenceUnit();
+	WordDescription myWordDescription;
+	SentenceUnit mySentenceUnit;
 
 };
 

@@ -9,7 +9,6 @@
 
 SyntaxAnalyzer::SyntaxAnalyzer(const std::string &sentence) {
 
-
 // parse words and symbols like ','
 // get vector of mySentenceUnit: symbol or word
 
