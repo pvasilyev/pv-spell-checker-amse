@@ -17,8 +17,8 @@ public:
 
 private:
 
-	std::vector<SentencePart> mySubjectSentencePart;
-	std::vector<SentencePart> myPredicateSentencePart;
+	std::vector<SentencePart> mySubject;
+	std::vector<SentencePart> myPredicate;
 
 	std::vector<SentenceUnit> mySentenceUnits;
 

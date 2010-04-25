@@ -11,18 +11,18 @@
 
 SimpleSentence::SimpleSentence(const std::vector<SentenceUnit> &su): mySentenceUnits(su) {
 	GrammarFrame frame(su);
-	mySubjectSentencePart = frame.getSubjectSentencePart();
-	myPredicateSentencePart = frame.getPredicateSentencePart();
+	mySubject = frame.getSubject();
+	myPredicate = frame.getPredicate();
 }
 
 
 void SimpleSentence::print(std::ostream &os) const {
 	os << "Варианты подлежащего:" << "\n";
-	for (std::vector<SentencePart>::const_iterator it = mySubjectSentencePart.begin(); it != mySubjectSentencePart.end(); ++it) {
+	for (std::vector<SentencePart>::const_iterator it = mySubject.begin(); it != mySubject.end(); ++it) {
 		os << (it->mySentenceUnit).myText << "\n";
 	}
 	os << "Варианты сказуемого:" << "\n";
-	for (std::vector<SentencePart>::const_iterator it = myPredicateSentencePart.begin(); it != myPredicateSentencePart.end(); ++it) {
+	for (std::vector<SentencePart>::const_iterator it = myPredicate.begin(); it != myPredicate.end(); ++it) {
 		os << (it->mySentenceUnit).myText << "\n";
 	}
 	os << "\n";
