@@ -16,9 +16,9 @@ GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits
 			// глагол -- кандидат на сказуемое 
 			if ((jt)->hasPart(WordDescription::VERB)) {
 				SentencePart sp;
-				sp.myWordDescription = (*jt);
+				sp.myWordDescription = *jt;
 				sp.mySentenceUnit = *it;
-				myPredicateSentencePart.push_back(sp);
+				myPredicate.push_back(sp);
 			}
 		}
 	}
@@ -51,15 +51,14 @@ void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
 			SentencePart sp;
 			sp.myWordDescription = (description);
 			sp.mySentenceUnit = *it;
-			mySubjectSentencePart.push_back(sp);
+			mySubject.push_back(sp);
 		}
 	}
 }
 
 bool GrammarFrame::checkPredicateCoordination() const {
-// PLURAL etc -- положить в контейнер + сделать метод статическим!
-	if (!myPredicateSentencePart.empty()) {
-		const WordDescription &firstPredicate = (myPredicateSentencePart.at(0)).myWordDescription;
+	if (!myPredicate.empty()) {
+		const WordDescription &firstPredicate = (myPredicate.at(0)).myWordDescription;
 		std::vector<WordDescription::Grammem> vectorGrammems;
 		vectorGrammems.push_back(WordDescription::PLURAL);
 		vectorGrammems.push_back(WordDescription::SINGULAR);
@@ -69,8 +68,8 @@ bool GrammarFrame::checkPredicateCoordination() const {
 		vectorGrammems.push_back(WordDescription::PASTTENSE);
 		vectorGrammems.push_back(WordDescription::PRESENTTENSE);
 		vectorGrammems.push_back(WordDescription::FUTURETENSE);
-		for (std::vector<SentencePart>::const_iterator it = myPredicateSentencePart.begin();
-		     it != myPredicateSentencePart.end(); ++it) {
+		for (std::vector<SentencePart>::const_iterator it = myPredicate.begin();
+		     it != myPredicate.end(); ++it) {
 			for (std::vector<WordDescription::Grammem>::const_iterator jt = vectorGrammems.begin();
 				jt != vectorGrammems.end(); ++jt) {
 				if (!(it->myWordDescription).areCoordinatedGrammem(firstPredicate, *jt)) {
@@ -83,8 +82,8 @@ bool GrammarFrame::checkPredicateCoordination() const {
 }
  
 bool GrammarFrame::checkSubjectCoordination() const {
-	if (!mySubjectSentencePart.empty()) {
-		const WordDescription &firstSubject = (mySubjectSentencePart.at(0)).myWordDescription;
+	if (!mySubject.empty()) {
+		const WordDescription &firstSubject = (mySubject.at(0)).myWordDescription;
 		std::vector<WordDescription::Grammem> vectorGrammems;
 		vectorGrammems.push_back(WordDescription::PLURAL);
 		vectorGrammems.push_back(WordDescription::SINGULAR);
@@ -94,8 +93,8 @@ bool GrammarFrame::checkSubjectCoordination() const {
 		std::vector<WordDescription::PartOfSpeech> vectorPartsOfSpeech;
 		vectorPartsOfSpeech.push_back(WordDescription::NOUN);
 		vectorPartsOfSpeech.push_back(WordDescription::PRONOUN);
-		for (std::vector<SentencePart>::const_iterator it = mySubjectSentencePart.begin();
-		     it != mySubjectSentencePart.end(); ++it) {
+		for (std::vector<SentencePart>::const_iterator it = mySubject.begin();
+		     it != mySubject.end(); ++it) {
 			for (std::vector<WordDescription::Grammem>::const_iterator jt = vectorGrammems.begin();
 				jt != vectorGrammems.end(); ++jt) {
 				if (!(it->myWordDescription).areCoordinatedGrammem(firstSubject, *jt)) {
@@ -116,26 +115,26 @@ bool GrammarFrame::checkSubjectCoordination() const {
 void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCoordination) {
 	if (subjectsInCoordination && !predicatesInCoordination) {
 		// фильтр по числу
-		for (std::vector<SentencePart>::iterator it = myPredicateSentencePart.begin();
-			it != myPredicateSentencePart.end(); ++it) {
+		for (std::vector<SentencePart>::iterator it = myPredicate.begin();
+			it != myPredicate.end(); ++it) {
 			
 		}
 		// фильтр по роду
-		for (std::vector<SentencePart>::iterator it = myPredicateSentencePart.begin();
-			it != myPredicateSentencePart.end(); ++it) {
+		for (std::vector<SentencePart>::iterator it = myPredicate.begin();
+			it != myPredicate.end(); ++it) {
 			
 		}
 	} else
 	if (!subjectsInCoordination && predicatesInCoordination) {
 		// фильтр по числу
-		for (std::vector<SentencePart>::iterator it = mySubjectSentencePart.begin();
-			it != mySubjectSentencePart.end(); ++it) {
+		for (std::vector<SentencePart>::iterator it = mySubject.begin();
+			it != mySubject.end(); ++it) {
 			
 		}
 
 		// фильтр по роду
-		for (std::vector<SentencePart>::iterator it = mySubjectSentencePart.begin();
-		it != mySubjectSentencePart.end(); ++it) {
+		for (std::vector<SentencePart>::iterator it = mySubject.begin();
+		it != mySubject.end(); ++it) {
 			
 		}
 	} else
@@ -144,11 +143,11 @@ void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCo
 	}
 }
 
-std::vector<SentencePart> GrammarFrame::getPredicateSentencePart() const {
-	return myPredicateSentencePart;
+std::vector<SentencePart> GrammarFrame::getPredicate() const {
+	return myPredicate;
 }
 
-std::vector<SentencePart> GrammarFrame::getSubjectSentencePart() const {
-	return mySubjectSentencePart;
+std::vector<SentencePart> GrammarFrame::getSubject() const {
+	return mySubject;
 }
 

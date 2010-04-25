@@ -12,8 +12,8 @@ class GrammarFrame {
 public:
 	GrammarFrame(const std::vector<SentenceUnit> &su);
 
-	std::vector<SentencePart> getPredicateSentencePart() const;
-	std::vector<SentencePart> getSubjectSentencePart() const;
+	std::vector<SentencePart> getPredicate() const;
+	std::vector<SentencePart> getSubject() const;
 
 private:
 	bool checkPredicateCoordination() const;
@@ -23,8 +23,8 @@ private:
 
 	const std::vector<SentenceUnit> mySentenceUnits;
 
-	std::vector<SentencePart> mySubjectSentencePart;
-	std::vector<SentencePart> myPredicateSentencePart;
+	std::vector<SentencePart> mySubject;
+	std::vector<SentencePart> myPredicate;
 
 };
 
