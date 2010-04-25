@@ -28,4 +28,25 @@ private:
 
 };
 
+class Rule {
+
+public:
+	virtual bool accepts(...) = 0;
+
+};
+
+class SubjectCoordinationRule : public Rule {
+
+public:
+	bool accepts(const std::vector<SentencePart> &subjects) const;
+
+};
+
+class PredicateCoordinationRule : public Rule {
+
+public:
+	bool accepts(const std::vector<SentencePart> &predicates) const;
+
+};
+
 #endif
