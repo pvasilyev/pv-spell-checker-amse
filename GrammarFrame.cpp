@@ -24,7 +24,8 @@ GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits
 	}
 
 	SubjectCoordinationRule scr;
-	bool predicatesInCoordination = checkPredicateCoordination();
+	PredicateCoordinationRule pcr;
+	bool predicatesInCoordination = pcr.accepts(myPredicate);
 	bool subjectsInCoordination = scr.accepts(mySubject);
 	doFiltration(subjectsInCoordination, predicatesInCoordination);
 }
