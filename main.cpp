@@ -88,7 +88,7 @@ int main(int argc, char **argv){
 
 		compareOutAndGold(it->outFile, it->goldFile);
 
-		}
+	}
 
 	while (!iFile.eof()) {
 		std::getline(iFile, sentence);
