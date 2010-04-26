@@ -38,14 +38,14 @@ public:
 class SubjectCoordinationRule : public Rule {
 
 public:
-	bool accepts(const std::vector<SentencePart> &subjects) const;
+	bool accepts(const std::vector<SentencePart> &subjects);
 
 };
 
 class PredicateCoordinationRule : public Rule {
 
 public:
-	bool accepts(const std::vector<SentencePart> &predicates) const;
+	bool accepts(const std::vector<SentencePart> &predicates);
 
 };
 
