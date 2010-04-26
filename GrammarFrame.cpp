@@ -158,7 +158,7 @@ std::vector<SentencePart> GrammarFrame::getSubject() const {
 	return mySubject;
 }
 
-bool SubjectCoordinationRule::accepts(const std::vector<SentencePart> &subjects) const {
+bool SubjectCoordinationRule::accepts(const std::vector<SentencePart> &subjects) {
 	if (!subjects.empty()) {
 		const WordDescription &firstSubject = subjects.at(0).myWordDescription;
 
@@ -192,7 +192,7 @@ bool SubjectCoordinationRule::accepts(const std::vector<SentencePart> &subjects)
 	return true;
 }
 
-bool PredicateCoordinationRule::accepts(const std::vector<SentencePart> &predicates) const {
+bool PredicateCoordinationRule::accepts(const std::vector<SentencePart> &predicates) {
 	if (!predicates.empty()) {
 		const WordDescription &firstPredicate = predicates.at(0).myWordDescription;
 
