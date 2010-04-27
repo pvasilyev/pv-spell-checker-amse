@@ -12,7 +12,7 @@ GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits
 		it != mySentenceUnits.end(); ++it ) {
 		for (std::vector<WordDescription>::const_iterator jt = it->myVectorWordDescription.begin();
 			jt != it->myVectorWordDescription.end(); ++jt) {
-			tryToAddSubject(it, *jt);
+			tryToAddSubject(*it, *(it - 1), *jt, it == mySentenceUnits.begin());
 
 			// глагол -- кандидат на сказуемое 
 			if ((jt)->hasPart(WordDescription::VERB)) {
@@ -32,17 +32,16 @@ GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits
 }
 
 //итераторы не для передачи по параметру
-void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
-				const WordDescription &description) {
+void GrammarFrame::tryToAddSubject(const SentenceUnit &current, const SentenceUnit &previous,
+				const WordDescription &description, const bool &isFirstSentenceUnit) {
 	// существительное или местоимение + именительный падеж -- кандидат на подлежащее
 	if ((description.hasPart(WordDescription::NOUN) || description.hasPart(WordDescription::PRONOUN)) &&
 		description.hasGrammem(WordDescription::NOMINATIV)) {
 		bool b = true;
-		if (it != mySentenceUnits.begin()) {
-			const std::vector<SentenceUnit>::const_iterator previous = it - 1;
+		if (!isFirstSentenceUnit) {
 			for (std::vector<WordDescription>::const_iterator
-				kt = previous->myVectorWordDescription.begin();
-				kt != previous->myVectorWordDescription.end(); ++kt) {
+				kt = previous.myVectorWordDescription.begin();
+				kt != previous.myVectorWordDescription.end(); ++kt) {
 				if (kt->hasPart(WordDescription::PREPOSAL) ||
 					(kt->hasPart(WordDescription::ADJECTIVE_FULL) &&
 					(!kt->hasGrammem(WordDescription::NOMINATIV)))) {
@@ -52,8 +51,8 @@ void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
 		}
 		if (b) {
 			SentencePart sp;
-			sp.myWordDescription = (description);
-			sp.mySentenceUnit = *it;
+			sp.myWordDescription = description;
+			sp.mySentenceUnit = current;
 			mySubject.push_back(sp);
 		}
 	}
