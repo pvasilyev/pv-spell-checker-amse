@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "SyntaxAnalyzer.h"
+class SentencePart;
 
 class Rule {
 

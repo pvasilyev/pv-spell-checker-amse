@@ -31,7 +31,6 @@ GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits
 	doFiltration(subjectsInCoordination, predicatesInCoordination);
 }
 
-//итераторы не для передачи по параметру
 void GrammarFrame::tryToAddSubject(const SentenceUnit &current, const SentenceUnit &previous,
 				const WordDescription &description, const bool &isFirstSentenceUnit) {
 	// существительное или местоимение + именительный падеж -- кандидат на подлежащее
