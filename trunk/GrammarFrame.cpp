@@ -59,67 +59,6 @@ void GrammarFrame::tryToAddSubject(std::vector<SentenceUnit>::const_iterator it,
 	}
 }
 
-bool GrammarFrame::checkPredicateCoordination() const {
-	if (!myPredicate.empty()) {
-		const WordDescription &firstPredicate = myPredicate.at(0).myWordDescription;
-
-		std::vector<WordDescription::Grammem> vectorGrammems;
-		vectorGrammems.push_back(WordDescription::PLURAL);
-		vectorGrammems.push_back(WordDescription::SINGULAR);
-		vectorGrammems.push_back(WordDescription::MASCULINUM);
-		vectorGrammems.push_back(WordDescription::FEMINUM);
-		vectorGrammems.push_back(WordDescription::NEUTRUM);
-		vectorGrammems.push_back(WordDescription::PASTTENSE);
-		vectorGrammems.push_back(WordDescription::PRESENTTENSE);
-		vectorGrammems.push_back(WordDescription::FUTURETENSE);
-
-		for (std::vector<SentencePart>::const_iterator it = myPredicate.begin();
-		     it != myPredicate.end(); ++it) {
-			for (std::vector<WordDescription::Grammem>::const_iterator jt = vectorGrammems.begin();
-				jt != vectorGrammems.end(); ++jt) {
-				if (!it->myWordDescription.areCoordinatedGrammem(firstPredicate, *jt)) {
-					return false;
-				}
-			}
-		}
-	}
-	return true;
-}
- 
-bool GrammarFrame::checkSubjectCoordination() const {
-	if (!mySubject.empty()) {
-		const WordDescription &firstSubject = mySubject.at(0).myWordDescription;
-
-		std::vector<WordDescription::Grammem> vectorGrammems;
-		vectorGrammems.push_back(WordDescription::PLURAL);
-		vectorGrammems.push_back(WordDescription::SINGULAR);
-		vectorGrammems.push_back(WordDescription::MASCULINUM);
-		vectorGrammems.push_back(WordDescription::FEMINUM);
-		vectorGrammems.push_back(WordDescription::NEUTRUM);
-
-		std::vector<WordDescription::PartOfSpeech> vectorPartsOfSpeech;
-		vectorPartsOfSpeech.push_back(WordDescription::NOUN);
-		vectorPartsOfSpeech.push_back(WordDescription::PRONOUN);
-
-		for (std::vector<SentencePart>::const_iterator it = mySubject.begin();
-		     it != mySubject.end(); ++it) {
-			for (std::vector<WordDescription::Grammem>::const_iterator jt = vectorGrammems.begin();
-				jt != vectorGrammems.end(); ++jt) {
-				if (!it->myWordDescription.areCoordinatedGrammem(firstSubject, *jt)) {
-					return false;
-				}
-			}
-			for (std::vector<WordDescription::PartOfSpeech>::const_iterator jt = vectorPartsOfSpeech.begin();
-				jt != vectorPartsOfSpeech.end(); ++jt) {
-				if (!it->myWordDescription.areCoordinatedPart(firstSubject, *jt)) {
-					return false;
-				}
-			}
-		}
-	}
-	return true;
-}
-
 void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCoordination) {
 	if (subjectsInCoordination && !predicatesInCoordination) {
 		// фильтр по числу
