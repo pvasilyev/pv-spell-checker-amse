@@ -14,7 +14,7 @@ GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits
 			jt != it->myVectorWordDescription.end(); ++jt) {
 			tryToAddSubject(*it, *(it - 1), *jt, it == mySentenceUnits.begin());
 
-			// глагол -- кандидат на сказуемое  
+			// глагол -- кандидат на сказуемое 
 			if ((jt)->hasPart(WordDescription::VERB)) {
 				SentencePart sp;
 				sp.myWordDescription = *jt;
