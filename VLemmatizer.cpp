@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 #include "VLemmatizer.h"
-
+ 
 VLemmatizer::VLemmatizer(){
 	myLem = turglem_load("/usr/local/share/turglem/russian/dict_russian.auto",
 			   "/usr/local/share/turglem/russian/prediction_russian.auto",
