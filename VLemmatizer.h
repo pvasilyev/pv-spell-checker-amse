@@ -1,13 +1,13 @@
 #ifndef _VASILIEV_LEMMATIZER_H_
 #define _VASILIEV_LEMMATIZER_H_
 
-#include <turglem/lemmatizer.h>
-#include <turglem/russian/charset_adapters.h>
-#include <MAFSA/charset_adapter.h>
-
 #include <list>
 #include <string>
 #include <vector>
+
+#include <turglem/lemmatizer.h>
+#include <turglem/russian/charset_adapters.h>
+#include <MAFSA/charset_adapter.h>
 
 class WordDescription {
 
@@ -113,9 +113,9 @@ public:
 	WordDescription();
 	bool hasGrammem(Grammem grammem) const;	
 	bool hasPart(PartOfSpeech pos) const;
-	bool hasSamePart(const PartOfSpeech &pos) const;
-	bool hasSameNumeral(const Grammem &grammem) const;
-	bool hasSameGenus(const Grammem &grammem) const;
+	bool hasSamePart(const WordDescription &description) const;
+	bool hasSameNumeral(const WordDescription &description) const;
+	bool hasSameGenus(const WordDescription &description) const;
 	bool areCoordinatedGrammem(const WordDescription &wd, Grammem grammem) const;
 	bool areCoordinatedPart(const WordDescription &wd, PartOfSpeech pos) const;
 
