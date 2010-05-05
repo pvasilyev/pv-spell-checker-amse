@@ -63,9 +63,9 @@ void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCo
 		for (std::vector<SentencePart>::iterator it = myPredicate.begin();
 			it != myPredicate.end(); ++it) {
 			if ((it->myWordDescription.hasGrammem(WordDescription::SINGULAR) && 
-			mySubject.at(0).hasGrammem(WordDescription::SINGULAR)) || 
+			mySubject.at(0).myWordDescription.hasGrammem(WordDescription::SINGULAR)) || 
 			(it->myWordDescription.hasGrammem(WordDescription::PLURAL) && 
-			mySubject.at(0).hasGrammem(WordDescription::PLURAL))) {
+			mySubject.at(0).myWordDescription.hasGrammem(WordDescription::PLURAL))) {
 				myPredicate.erase(it);
 			}
 		}
