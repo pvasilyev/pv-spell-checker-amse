@@ -62,30 +62,33 @@ void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCo
 		// фильтр по числу
 		for (std::vector<SentencePart>::iterator it = myPredicate.begin();
 			it != myPredicate.end(); ++it) {
-			if ((it->myWordDescription.hasGrammem(WordDescription::SINGULAR) && 
-			mySubject.at(0).myWordDescription.hasGrammem(WordDescription::SINGULAR)) || 
-			(it->myWordDescription.hasGrammem(WordDescription::PLURAL) && 
-			mySubject.at(0).myWordDescription.hasGrammem(WordDescription::PLURAL))) {
+			if (it->myWordDescription.hasSameNumeral(mySubject.at(0).myWordDescription)) {
 				myPredicate.erase(it);
 			}
 		}
 		// фильтр по роду
 		for (std::vector<SentencePart>::iterator it = myPredicate.begin();
 			it != myPredicate.end(); ++it) {
-			
+			if (it->myWordDescription.hasSameGenus(mySubject.at(0).myWordDescription)) {
+				myPredicate.erase(it);
+			}
 		}
 	} else
 	if (!subjectsInCoordination && predicatesInCoordination) {
 		// фильтр по числу
 		for (std::vector<SentencePart>::iterator it = mySubject.begin();
 			it != mySubject.end(); ++it) {
-			
+			if (it->myWordDescription.hasSameNumeral(myPredicate.at(0).myWordDescription)) {
+				mySubject.erase(it);
+			}
 		}
 
 		// фильтр по роду
 		for (std::vector<SentencePart>::iterator it = mySubject.begin();
 		it != mySubject.end(); ++it) {
-			
+			if (it->myWordDescription.hasSameGenus(myPredicate.at(0).myWordDescription)) {
+				mySubject.erase(it);
+			}
 		}
 	} else
 	if (!subjectsInCoordination && !predicatesInCoordination) {
