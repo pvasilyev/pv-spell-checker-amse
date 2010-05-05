@@ -111,8 +111,8 @@ public:
 
 public:
 	WordDescription();
-	bool hasGrammem(Grammem grammem) const;	
-	bool hasPart(PartOfSpeech pos) const;
+	bool hasGrammem(const Grammem &grammem) const;	
+	bool hasPart(const PartOfSpeech &pos) const;
 	bool hasSamePart(const WordDescription &description) const;
 	bool hasSameNumeral(const WordDescription &description) const;
 	bool hasSameGenus(const WordDescription &description) const;
