@@ -5,7 +5,7 @@
 #include "SyntaxAnalyzer.h"
 #include "Rules.h"
 #include "VLemmatizer.h"
-
+ 
 GrammarFrame::GrammarFrame(const std::vector<SentenceUnit> &su): mySentenceUnits(su) {
 
 	for (std::vector<SentenceUnit>::const_iterator it = mySentenceUnits.begin();
@@ -62,7 +62,12 @@ void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCo
 		// фильтр по числу
 		for (std::vector<SentencePart>::iterator it = myPredicate.begin();
 			it != myPredicate.end(); ++it) {
-			
+			if ((it->myWordDescription.hasGrammem(WordDescription::SINGULAR) && 
+			mySubject.at(0).hasGrammem(WordDescription::SINGULAR)) || 
+			(it->myWordDescription.hasGrammem(WordDescription::PLURAL) && 
+			mySubject.at(0).hasGrammem(WordDescription::PLURAL))) {
+				myPredicate.erase(it);
+			}
 		}
 		// фильтр по роду
 		for (std::vector<SentencePart>::iterator it = myPredicate.begin();
