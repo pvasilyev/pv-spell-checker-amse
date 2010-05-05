@@ -44,6 +44,7 @@ void GrammarFrame::tryToAddSubject(const SentenceUnit &current, const SentenceUn
 				if (kt->hasPart(WordDescription::PREPOSAL) ||
 					(kt->hasPart(WordDescription::ADJECTIVE_FULL) &&
 					(!kt->hasGrammem(WordDescription::NOMINATIV)))) {
+
 					b = false;
 				}
 			}
