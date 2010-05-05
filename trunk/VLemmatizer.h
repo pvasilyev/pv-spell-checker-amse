@@ -4,7 +4,7 @@
 #include <list>
 #include <string>
 #include <vector>
-
+ 
 #include <turglem/lemmatizer.h>
 #include <turglem/russian/charset_adapters.h>
 #include <MAFSA/charset_adapter.h>
