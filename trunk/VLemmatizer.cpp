@@ -80,11 +80,11 @@ bool WordDescription::hasSameGenus(const WordDescription &description) const {
 	(description.hasGrammem(WordDescription::MASCFEM))));
 }
 
-bool WordDescription::hasPart(PartOfSpeech pos) const {
+bool WordDescription::hasPart(const PartOfSpeech &pos) const {
 	return (myPartOfSpeech == pos);
 }
 
-bool WordDescription::hasGrammem(Grammem grammem) const {
+bool WordDescription::hasGrammem(const Grammem &grammem) const {
 	return (myGrammem & (((u_int64_t)1) << grammem)) != 0;
 }
 
