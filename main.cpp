@@ -34,12 +34,12 @@ void compareOutAndGold(const std::string &out, const std::string &gold) {
 		std::getline(gs, strG);
 
 		if (strO != strG) {
-			std::cout << "Not equal!" << "\n";
+			std::cout << "Wrong answer!" << "\n";
 			bCont = false;
 		}
 		else if (os.eof() || gs.eof()) {
 			if (os.eof() && gs.eof()) {
-				std::cout << "100 \% equal!" << "\n";
+				std::cout << "100 \% accepts!" << "\n";
 				bCont = false;
 			}
 			else {
