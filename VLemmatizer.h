@@ -116,7 +116,7 @@ public:
 	bool hasSamePart(const WordDescription &description) const;
 	bool hasSameNumeral(const WordDescription &description) const;
 	bool hasSameGenus(const WordDescription &description) const;
-	bool areCoordinatedGrammem(const WordDescription &wd, Grammem grammem) const;
+	static bool areCoordinatedGrammems(const WordDescription &wd1, const WordDescription &wd2, Grammem grammem);
 	bool areCoordinatedPart(const WordDescription &wd, PartOfSpeech pos) const;
 
 private:
