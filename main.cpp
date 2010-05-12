@@ -9,6 +9,7 @@
 #include "VLemmatizer.h"
 
 class file {
+
 public:
 
 	std::string inFile;
