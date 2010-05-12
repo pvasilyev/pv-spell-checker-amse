@@ -1,6 +1,5 @@
 #include "Rules.h"
 #include "SyntaxAnalyzer.h"
-#include "VLemmatizer.h"
 
 std::vector<WordDescription::Grammem> Rule::getGrammems() const {
 	std::vector<WordDescription::Grammem> vector;
