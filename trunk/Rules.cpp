@@ -1,6 +1,38 @@
 #include "Rules.h"
 #include "SyntaxAnalyzer.h"
 
+bool SubjectCoordinationRule::accepts(const std::vector<SentencePart> &subjects) const {
+	if (!subjects.empty()) {
+
+		std::vector<WordDescription::Grammem> vectorGrammems = this->getGrammems();
+		if (!grammemsAccept(subjects, vectorGrammems)) {
+			return false;
+		}
+
+		std::vector<WordDescription::PartOfSpeech> vectorPartsOfSpeech = this->getParts();
+		if (!partsAccept(subjects, vectorPartsOfSpeech)) {
+			return false;
+		}
+
+	}
+	return true;
+}
+
+bool PredicateCoordinationRule::accepts(const std::vector<SentencePart> &predicates) const {
+	if (!predicates.empty()) {
+
+		std::vector<WordDescription::Grammem> vectorGrammems = this->getGrammems();
+		vectorGrammems.push_back(WordDescription::PASTTENSE);
+		vectorGrammems.push_back(WordDescription::PRESENTTENSE);
+		vectorGrammems.push_back(WordDescription::FUTURETENSE);
+		if (!grammemsAccept(predicates, vectorGrammems)) {
+			return false;
+		}
+
+        }
+        return true;
+}
+
 std::vector<WordDescription::Grammem> Rule::getGrammems() const {
 	std::vector<WordDescription::Grammem> vector;
 	vector.push_back(WordDescription::PLURAL);
@@ -52,34 +84,3 @@ bool Rule::partsAccept(const std::vector<SentencePart> &vectorSentenceParts,
 	return true;
 }
 
-bool SubjectCoordinationRule::accepts(const std::vector<SentencePart> &subjects) const {
-	if (!subjects.empty()) {
-
-		std::vector<WordDescription::Grammem> vectorGrammems = this->getGrammems();
-		if (!grammemsAccept(subjects, vectorGrammems)) {
-			return false;
-		}
-
-		std::vector<WordDescription::PartOfSpeech> vectorPartsOfSpeech = this->getParts();
-		if (!partsAccept(subjects, vectorPartsOfSpeech)) {
-			return false;
-		}
-
-	}
-	return true;
-}
-
-bool PredicateCoordinationRule::accepts(const std::vector<SentencePart> &predicates) const {
-	if (!predicates.empty()) {
-
-		std::vector<WordDescription::Grammem> vectorGrammems = this->getGrammems();
-		vectorGrammems.push_back(WordDescription::PASTTENSE);
-		vectorGrammems.push_back(WordDescription::PRESENTTENSE);
-		vectorGrammems.push_back(WordDescription::FUTURETENSE);
-		if (!grammemsAccept(predicates, vectorGrammems)) {
-			return false;
-		}
-
-        }
-        return true;
-}
