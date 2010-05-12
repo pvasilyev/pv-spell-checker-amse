@@ -88,8 +88,8 @@ bool WordDescription::hasGrammem(const Grammem &grammem) const {
 	return (myGrammem & (((u_int64_t)1) << grammem)) != 0;
 }
 
-bool WordDescription::areCoordinatedGrammem(const WordDescription &wd, Grammem grammem) const {
-	return hasGrammem(grammem) == wd.hasGrammem(grammem);
+bool WordDescription::areCoordinatedGrammems(const WordDescription &wd1, const WordDescription &wd2, Grammem grammem) {
+	return wd1.hasGrammem(grammem) == wd2.hasGrammem(grammem);
 }
 
 bool WordDescription::areCoordinatedPart(const WordDescription &wd, PartOfSpeech pos) const {

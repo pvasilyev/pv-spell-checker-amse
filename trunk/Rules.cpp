@@ -26,7 +26,7 @@ bool SubjectCoordinationRule::accepts(const std::vector<SentencePart> &subjects)
 		     it != subjects.end(); ++it) {
 			for (std::vector<WordDescription::Grammem>::const_iterator jt = vectorGrammems.begin();
 				jt != vectorGrammems.end(); ++jt) {
-				if (!it->myWordDescription.areCoordinatedGrammem(firstSubject, *jt)) {
+				if (!WordDescription::areCoordinatedGrammems(it->myWordDescription, firstSubject, *jt)) {
 					return false;
 				}
 			}
@@ -54,7 +54,7 @@ bool PredicateCoordinationRule::accepts(const std::vector<SentencePart> &predica
 		     it != predicates.end(); ++it) {
                         for (std::vector<WordDescription::Grammem>::const_iterator jt = vectorGrammems.begin();
                                 jt != vectorGrammems.end(); ++jt) {
-                                if (!it->myWordDescription.areCoordinatedGrammem(firstPredicate, *jt)) {
+                                if (!WordDescription::areCoordinatedGrammems(it->myWordDescription, firstPredicate, *jt)) {
                                         return false;
                                 }
                         }
