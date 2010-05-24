@@ -63,7 +63,8 @@ void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCo
 		// фильтр по числу
 		for (std::vector<SentencePart>::iterator it = myPredicate.begin();
 			it != myPredicate.end(); ) {
-			if (it->myWordDescription.hasSameNumeral(mySubject.at(0).myWordDescription)) {
+			if (myWordDescription::hasSameNumerals(it->myWordDescription,
+								mySubject.at(0).myWordDescription)) {
 				myPredicate.erase(it);
 			} else {
 				++it;
@@ -72,7 +73,8 @@ void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCo
 		// фильтр по роду
 		for (std::vector<SentencePart>::iterator it = myPredicate.begin();
 			it != myPredicate.end(); ) {
-			if (it->myWordDescription.hasSameGenus(mySubject.at(0).myWordDescription)) {
+			if (myWordDescription::hasSameGenus(it->myWordDescription,
+							mySubject.at(0).myWordDescription)) {
 				myPredicate.erase(it);
 			} else {
 				++it;
@@ -83,7 +85,8 @@ void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCo
 		// фильтр по числу
 		for (std::vector<SentencePart>::iterator it = mySubject.begin();
 			it != mySubject.end(); ) {
-			if (it->myWordDescription.hasSameNumeral(myPredicate.at(0).myWordDescription)) {
+			if (myWordDescription::hasSameNumeral(it->myWordDescription,
+							myPredicate.at(0).myWordDescription)) {
 				mySubject.erase(it);
 			} else {
 				++it;
@@ -94,7 +97,8 @@ void GrammarFrame::doFiltration(bool subjectsInCoordination, bool predicatesInCo
 		// фильтр по роду
 		for (std::vector<SentencePart>::iterator it = mySubject.begin();
 		it != mySubject.end(); ) {
-			if (it->myWordDescription.hasSameGenus(myPredicate.at(0).myWordDescription)) {
+			if (myWordDescription::hasSameGenus(it->myWordDescription,
+							myPredicate.at(0).myWordDescription)) {
 				mySubject.erase(it);
 			} else {
 				++it;
