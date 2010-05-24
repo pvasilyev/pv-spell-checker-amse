@@ -113,9 +113,9 @@ public:
 	WordDescription();
 	bool hasGrammem(const Grammem &grammem) const;	
 	bool hasPart(const PartOfSpeech &pos) const;
-	bool hasSamePart(const WordDescription &description) const;
-	bool hasSameNumeral(const WordDescription &description) const;
-	bool hasSameGenus(const WordDescription &description) const;
+	static bool hasSameParts(const WordDescription &wd1, const WordDescription &wd2);
+	static bool hasSameNumerals(const WordDescription &wd1, const WordDescription &wd2);
+	static bool hasSameGenus(const WordDescription &wd1, const WordDescription &wd2);
 	static bool areCoordinatedGrammems(const WordDescription &wd1,
 					const WordDescription &wd2, Grammem grammem);
 	static bool areCoordinatedGrammems(const WordDescription &wd1,
