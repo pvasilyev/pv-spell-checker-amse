@@ -58,18 +58,18 @@ WordDescription::PartOfSpeech &WordDescription::getPartOfSpeech() {
 	return myPartOfSpeech;
 }
 
-bool WordDescription::hasSamePart(const WordDescription &description) const {
-	return description.myPartOfSpeech == myPartOfSpeech;
+bool WordDescription::hasSameParts(const WordDescription &wd1, const WordDescription &wd2) {
+	return wd1.myPartOfSpeech == wd2.myPartOfSpeech;
 }
 
-bool WordDescription::hasSameNumeral(const WordDescription &description) const {
-	return (((this->hasGrammem(WordDescription::SINGULAR)) && 
-	(description.hasGrammem(WordDescription::SINGULAR))) ||
-	((this->hasGrammem(WordDescription::PLURAL)) && 
-	(description.hasGrammem(WordDescription::PLURAL))));
+bool WordDescription::hasSameNumerals(const WordDescription &wd1, const WordDescription &wd2) const {
+	return (((wd1->hasGrammem(WordDescription::SINGULAR)) && 
+	(wd2.hasGrammem(WordDescription::SINGULAR))) ||
+	((wd1->hasGrammem(WordDescription::PLURAL)) && 
+	(wd2.hasGrammem(WordDescription::PLURAL))));
 }
 
-bool WordDescription::hasSameGenus(const WordDescription &description) const {
+bool WordDescription::hasSameGenus(const WordDescription &wd1, const WordDescription &wd2) const {
 	return (((this->hasGrammem(WordDescription::MASCULINUM)) && 
 	(description.hasGrammem(WordDescription::MASCULINUM))) ||
 	((this->hasGrammem(WordDescription::FEMINUM)) && 
