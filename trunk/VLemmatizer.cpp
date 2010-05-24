@@ -63,21 +63,21 @@ bool WordDescription::hasSameParts(const WordDescription &wd1, const WordDescrip
 }
 
 bool WordDescription::hasSameNumerals(const WordDescription &wd1, const WordDescription &wd2) const {
-	return (((wd1->hasGrammem(WordDescription::SINGULAR)) && 
+	return (((wd1.hasGrammem(WordDescription::SINGULAR)) && 
 	(wd2.hasGrammem(WordDescription::SINGULAR))) ||
-	((wd1->hasGrammem(WordDescription::PLURAL)) && 
+	((wd1.hasGrammem(WordDescription::PLURAL)) && 
 	(wd2.hasGrammem(WordDescription::PLURAL))));
 }
 
 bool WordDescription::hasSameGenus(const WordDescription &wd1, const WordDescription &wd2) const {
-	return (((this->hasGrammem(WordDescription::MASCULINUM)) && 
-	(description.hasGrammem(WordDescription::MASCULINUM))) ||
-	((this->hasGrammem(WordDescription::FEMINUM)) && 
-	(description.hasGrammem(WordDescription::FEMINUM))) ||
-	((this->hasGrammem(WordDescription::NEUTRUM)) && 
-	(description.hasGrammem(WordDescription::NEUTRUM))) ||
-	((this->hasGrammem(WordDescription::MASCFEM)) && 
-	(description.hasGrammem(WordDescription::MASCFEM))));
+	return (((wd1.hasGrammem(WordDescription::MASCULINUM)) && 
+	(wd2.hasGrammem(WordDescription::MASCULINUM))) ||
+	((wd1.hasGrammem(WordDescription::FEMINUM)) && 
+	(wd2.hasGrammem(WordDescription::FEMINUM))) ||
+	((wd1.hasGrammem(WordDescription::NEUTRUM)) && 
+	(wd2.hasGrammem(WordDescription::NEUTRUM))) ||
+	((wd1.hasGrammem(WordDescription::MASCFEM)) && 
+	(wd2.hasGrammem(WordDescription::MASCFEM))));
 }
 
 bool WordDescription::hasPart(const PartOfSpeech &pos) const {
