@@ -88,12 +88,38 @@ bool WordDescription::hasGrammem(const Grammem &grammem) const {
 	return (myGrammem & (((u_int64_t)1) << grammem)) != 0;
 }
 
-bool WordDescription::areCoordinatedGrammems(const WordDescription &wd1, const WordDescription &wd2, Grammem grammem) {
+bool WordDescription::areCoordinatedGrammems(const WordDescription &wd1,
+					const WordDescription &wd2, Grammem grammem) {
 	return wd1.hasGrammem(grammem) == wd2.hasGrammem(grammem);
 }
 
-bool WordDescription::areCoordinatedPart(const WordDescription &wd, PartOfSpeech pos) const {
-	return wd.myPartOfSpeech == pos;
+bool WordDescription::areCoordinatedGrammems(const WordDescription &wd1,
+					const WordDescription &wd2,
+					const std::vector<WordDescription::Grammem> &grammems) {
+	for (std::vector<WordDescription::Grammem>::const_iterator it = grammems.begin();
+	 it != grammems.end(); ++it) {
+		if (!WordDescription::areCoordinatedGrammems(wd1, wd2, *it)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+bool WordDescription::areCoordinatedParts(const WordDescription &wd1,
+					const WordDescription &wd2,
+					const std::vector<WordDescription::PartOfSpeech> &parts) {
+	bool firstFound = false;
+	bool secondFound = false;
+	for (std::vector<WordDescription::PartOfSpeech>::const_iterator it = parts.begin();
+	 it != parts.end(); ++it) {
+		if (wd1.hasPart(*it)) {
+			firstFound = true;
+		}
+		if (wd2.hasPart(*it)) {
+			secondFound = true;
+		}
+	}
+	return firstFound && secondFound;
 }
 
 std::vector<WordDescription::Grammem> &WordDescription::getGrammems() {

@@ -116,8 +116,14 @@ public:
 	bool hasSamePart(const WordDescription &description) const;
 	bool hasSameNumeral(const WordDescription &description) const;
 	bool hasSameGenus(const WordDescription &description) const;
-	static bool areCoordinatedGrammems(const WordDescription &wd1, const WordDescription &wd2, Grammem grammem);
-	bool areCoordinatedPart(const WordDescription &wd, PartOfSpeech pos) const;
+	static bool areCoordinatedGrammems(const WordDescription &wd1,
+					const WordDescription &wd2, Grammem grammem);
+	static bool areCoordinatedGrammems(const WordDescription &wd1,
+					const WordDescription &wd2,
+					const std::vector<WordDescription::Grammem> &grammems);
+	static bool areCoordinatedParts(const WordDescription &wd1,
+					const WordDescription &wd2,
+					const std::vector<WordDescription::PartOfSpeech> &parts);
 
 private:
 	WordDescription::PartOfSpeech myPartOfSpeech;

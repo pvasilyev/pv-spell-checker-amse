@@ -4,16 +4,19 @@
 bool SubjectCoordinationRule::accepts(const std::vector<SentencePart> &subjects) const {
 	if (!subjects.empty()) {
 
-		std::vector<WordDescription::Grammem> vectorGrammems = this->getGrammems();
-		if (!grammemsAccept(subjects, vectorGrammems)) {
-			return false;
-		}
+		std::vector<WordDescription::Grammem> grammems = this->getGrammems();
+		std::vector<WordDescription::PartOfSpeech> parts = this->getParts();
+		const WordDescription &first = subjects.at(0).myWordDescription;
 
-		std::vector<WordDescription::PartOfSpeech> vectorPartsOfSpeech = this->getParts();
-		if (!partsAccept(subjects, vectorPartsOfSpeech)) {
-			return false;
+		for (std::vector<SentencePart>::const_iterator it = subjects.begin();
+		 it != subjects.end(); ++it) {
+			if (!WordDescription::areCoordinatedGrammems(it->myWordDescription, first, grammems)) {
+				return false;
+			}
+			if (!WordDescription::areCoordinatedParts(it->myWordDescription, first, parts)) {
+				return false;
+			}
 		}
-
 	}
 	return true;
 }
@@ -21,14 +24,18 @@ bool SubjectCoordinationRule::accepts(const std::vector<SentencePart> &subjects)
 bool PredicateCoordinationRule::accepts(const std::vector<SentencePart> &predicates) const {
 	if (!predicates.empty()) {
 
-		std::vector<WordDescription::Grammem> vectorGrammems = this->getGrammems();
-		vectorGrammems.push_back(WordDescription::PASTTENSE);
-		vectorGrammems.push_back(WordDescription::PRESENTTENSE);
-		vectorGrammems.push_back(WordDescription::FUTURETENSE);
-		if (!grammemsAccept(predicates, vectorGrammems)) {
-			return false;
-		}
+		std::vector<WordDescription::Grammem> grammems = this->getGrammems();
+		grammems.push_back(WordDescription::PASTTENSE);
+		grammems.push_back(WordDescription::PRESENTTENSE);
+		grammems.push_back(WordDescription::FUTURETENSE);
+		const WordDescription &first = predicates.at(0).myWordDescription;
 
+		for (std::vector<SentencePart>::const_iterator it = predicates.begin();
+		 it != predicates.end(); ++it) {
+			if (!WordDescription::areCoordinatedGrammems(it->myWordDescription, first, grammems)) {
+				return false;
+			}
+		}
         }
         return true;
 }
@@ -48,39 +55,5 @@ std::vector<WordDescription::PartOfSpeech> Rule::getParts() const {
 	vector.push_back(WordDescription::NOUN);
 	vector.push_back(WordDescription::PRONOUN);
 	return vector;
-}
-
-bool Rule::grammemsAccept(const std::vector<SentencePart> &vectorSentenceParts,
-			const std::vector<WordDescription::Grammem> &vectorGrammems) const {
-
-	const WordDescription &firstSentencePart = vectorSentenceParts.at(0).myWordDescription;
-
-	for (std::vector<SentencePart>::const_iterator it = vectorSentenceParts.begin();
-	     it != vectorSentenceParts.end(); ++it) {
-		for (std::vector<WordDescription::Grammem>::const_iterator jt = vectorGrammems.begin();
-			jt != vectorGrammems.end(); ++jt) {
-			if (!WordDescription::areCoordinatedGrammems(it->myWordDescription, firstSentencePart, *jt)) {
-				return false;
-			}
-		}
-	}
-	return true;
-}
-
-bool Rule::partsAccept(const std::vector<SentencePart> &vectorSentenceParts,
-			const std::vector<WordDescription::PartOfSpeech> &vectorPartsOfSpeech) const {
-
-	const WordDescription &firstSentencePart = vectorSentenceParts.at(0).myWordDescription;
-
-	for (std::vector<SentencePart>::const_iterator it = vectorSentenceParts.begin();
-	     it != vectorSentenceParts.end(); ++it) {
-		for (std::vector<WordDescription::PartOfSpeech>::const_iterator jt = vectorPartsOfSpeech.begin();
-			jt != vectorPartsOfSpeech.end(); ++jt) {
-			if (!it->myWordDescription.areCoordinatedPart(firstSentencePart, *jt)) {
-				return false;
-			}
-		}
-	}
-	return true;
 }
 
